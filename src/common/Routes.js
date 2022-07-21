@@ -1,5 +1,6 @@
 export default {
     
-    SplashScreen:'SplashScreen'
+    SplashScreen: 'SplashScreen',
+    LoginScreen:'LoginScreen',
 
  }
