@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 
 import {Header} from '../../components';
-import LoginForm from './LoginForm';
-import SignupForm from './SignupForm';
+import LoginForm from './forms/LoginForm';
+import SignupForm from './forms/SignupForm';
 const LoginScreen = () => {
   const [isactive, setIsActive] = useState(true);
   return (
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'center',
     flexDirection: 'column',
+    backgroundColor:'#fff'
   },
 });
 

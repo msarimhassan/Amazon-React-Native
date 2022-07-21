@@ -6,12 +6,16 @@ import {
   TextInput,
   TouchableWithoutFeedback,
 } from 'react-native';
-import {Colors} from '../../common';
-import {Button} from '../../components';
-const LoginForm = ({setIsActive, active}) => {
+import {Colors} from '../../../common';
+import {Button} from '../../../components';
+const SignupForm = ({active, setIsActive}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign-In</Text>
+      <Text style={styles.title}>Creat Account</Text>
+      <View>
+        <Text style={styles.label}>Name</Text>
+        <TextInput style={styles.input} />
+      </View>
       <View>
         <Text style={styles.label}>Email</Text>
         <TextInput style={styles.input} />
@@ -20,15 +24,19 @@ const LoginForm = ({setIsActive, active}) => {
         <Text style={styles.label}>Password</Text>
         <TextInput style={styles.input} />
       </View>
+      <View>
+        <Text style={styles.label}>Phone</Text>
+        <TextInput style={styles.input} />
+      </View>
       <View style={{marginTop: 20}}>
-        <Button text="Login" />
+        <Button text="Signup" />
       </View>
       <View style={styles.info}>
-        <Text>Dont have an Account?</Text>
+        <Text>Already have an Account?</Text>
         <TouchableWithoutFeedback
           activeOpacity={0}
           onPress={() => setIsActive(!active)}>
-          <Text style={{fontSize: 17}}>Signup</Text>
+          <Text style={{fontSize: 17}}>Login</Text>
         </TouchableWithoutFeedback>
       </View>
     </View>
@@ -48,9 +56,6 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
   },
   label: {
     fontWeight: 'bold',
@@ -60,7 +65,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 35,
-    marginVertical: 12,
+    margin: 12,
     borderWidth: 1,
     padding: 10,
     borderRadius: 5,
@@ -79,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginForm;
+export default SignupForm;
