@@ -3,7 +3,7 @@ import { View, StyleSheet, Text,TouchableOpacity } from 'react-native';
 
 const Button = ({text}) => {
     return <TouchableOpacity style={styles.container}>
-         <Text style={styles.btntext}>Login</Text>
+        <Text style={styles.btntext}>{text}</Text>
 </TouchableOpacity>;
 }
 

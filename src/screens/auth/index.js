@@ -1,5 +1,4 @@
-import SplashScreen from "./SplashScreen";
-import LoginScreen from "./LoginScreen";
+import SplashScreen from './SplashScreen';
+import LoginScreen from './LoginScreen';
 
-
-export { SplashScreen,LoginScreen };
+export {SplashScreen, LoginScreen};
