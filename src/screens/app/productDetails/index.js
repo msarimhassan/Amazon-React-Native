@@ -1,15 +1,18 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import Card from './Card';
 
 const ProductdetailScreen = () => {
-    return <View style={styles.container}>
+    return <ScrollView style={styles.container}>
     <Card/>
-</View>;
+</ScrollView>;
 }
 
 const styles = StyleSheet.create({
-container:{}
+    container: {
+        height: '100%',
+        backgroundColor:'#fff'
+}
 });
 
 export default ProductdetailScreen;

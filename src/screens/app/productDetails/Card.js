@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingHorizontal: 5,
     height: '100%',
+    paddingBottom:10,
   },
   image: {
     resizeMode: 'contain',
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
   },
     details: {
         marginTop:10,
-        fontSize: 16,
+        fontSize: 17,
         color:'#000'
         
   },
