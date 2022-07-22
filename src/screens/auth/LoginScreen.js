@@ -23,8 +23,6 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    justifyContent: 'center',
-    flexDirection: 'column',
     backgroundColor:'#fff'
   },
 });

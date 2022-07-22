@@ -5,39 +5,61 @@ import {
   Text,
   TextInput,
   TouchableWithoutFeedback,
+  Image
 } from 'react-native';
 import {Colors} from '../../../common';
-import {Button} from '../../../components';
+import { Button } from '../../../components';
+import { Entypo } from '../../../common/Icons';
+import Logo from '../../../images/Amazon.png';
 const SignupForm = ({active, setIsActive}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Creat Account</Text>
+      <Image source={Logo} style={styles.logo} />
       <View>
-        <Text style={styles.label}>Name</Text>
-        <TextInput style={styles.input} />
-      </View>
-      <View>
-        <Text style={styles.label}>Email</Text>
-        <TextInput style={styles.input} />
-      </View>
-      <View>
-        <Text style={styles.label}>Password</Text>
-        <TextInput style={styles.input} />
-      </View>
-      <View>
-        <Text style={styles.label}>Phone</Text>
-        <TextInput style={styles.input} />
-      </View>
-      <View style={{marginTop: 20}}>
-        <Button text="Signup" />
-      </View>
-      <View style={styles.info}>
-        <Text>Already have an Account?</Text>
-        <TouchableWithoutFeedback
-          activeOpacity={0}
-          onPress={() => setIsActive(!active)}>
-          <Text style={{fontSize: 17}}>Login</Text>
-        </TouchableWithoutFeedback>
+        <Text style={styles.title}>Sign-Up</Text>
+        <View style={styles.inputBox}>
+          <Entypo name="user" size={15} />
+          <TextInput
+            style={styles.input}
+            placeholder="Name"
+            placeholderTextColor="#000"
+          />
+        </View>
+        <View style={styles.inputBox}>
+          <Entypo name="email" size={15} />
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            placeholderTextColor="#000"
+          />
+        </View>
+        <View style={styles.inputBox}>
+          <Entypo name="key" size={15} />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            placeholderTextColor="#000"
+          />
+        </View>
+        <View style={styles.inputBox}>
+          <Entypo name="phone" size={15} />
+          <TextInput
+            style={styles.input}
+            placeholder="Phone-no"
+            placeholderTextColor="#000"
+          />
+        </View>
+        <View style={{marginTop: 20}}>
+          <Button text="Signup" />
+        </View>
+        <View style={styles.info}>
+          <Text>Already have an Account?</Text>
+          <TouchableWithoutFeedback
+            activeOpacity={0}
+            onPress={() => setIsActive(!active)}>
+            <Text style={{fontSize: 17}}>Login</Text>
+          </TouchableWithoutFeedback>
+        </View>
       </View>
     </View>
   );
@@ -46,29 +68,15 @@ const SignupForm = ({active, setIsActive}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.white,
-    borderRadius: 5,
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    margin: 20,
-    paddingBottom: 30,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-  },
-  label: {
-    fontWeight: 'bold',
-    fontSize: 18,
-    color: '#000',
-    marginTop: 10,
+    paddingHorizontal: 30,
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   input: {
     height: 35,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 5,
+    width: '100%',
   },
   title: {
     fontSize: 30,
@@ -81,6 +89,19 @@ const styles = StyleSheet.create({
     marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  inputBox: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    borderBottomWidth: 1,
+    marginVertical: 20,
+  },
+  logo: {
+    width:200,
+    height: 110,
+    resizeMode: 'contain',
   },
 });
 

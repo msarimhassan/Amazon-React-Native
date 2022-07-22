@@ -5,31 +5,45 @@ import {
   Text,
   TextInput,
   TouchableWithoutFeedback,
+  Image
 } from 'react-native';
 import { Colors } from '../../../common';
 import { Entypo } from '../../../common/Icons';
-import {Button} from '../../../components';
+import { Button } from '../../../components';
+import Logo from '../../../images/Amazon.png'
 const LoginForm = ({setIsActive, active}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign-In</Text>
+      <Image source={Logo} style={styles.logo} />
       <View>
-        <Entypo name='email'/>
-        <TextInput style={styles.input} placeholder='Email' />
-      </View>
-      <View>
-        <TextInput style={styles.input} placeholder='Password' />
-      </View>
-      <View style={{marginTop: 20}}>
-        <Button text="Login" />
-      </View>
-      <View style={styles.info}>
-        <Text>Dont have an Account?</Text>
-        <TouchableWithoutFeedback
-          activeOpacity={0}
-          onPress={() => setIsActive(!active)}>
-          <Text style={{fontSize: 17}}>Signup</Text>
-        </TouchableWithoutFeedback>
+        <Text style={styles.title}>Sign-In</Text>
+        <View style={styles.inputBox}>
+          <Entypo name="email" size={15} />
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            placeholderTextColor="#000"
+          />
+        </View>
+        <View style={styles.inputBox}>
+          <Entypo name="key" size={15} />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            placeholderTextColor="#000"
+          />
+        </View>
+        <View style={{marginTop: 20}}>
+          <Button text="Login" />
+        </View>
+        <View style={styles.info}>
+          <Text>Dont have an Account?</Text>
+          <TouchableWithoutFeedback
+            activeOpacity={0}
+            onPress={() => setIsActive(!active)}>
+            <Text style={{fontSize: 17}}>Signup</Text>
+          </TouchableWithoutFeedback>
+        </View>
       </View>
     </View>
   );
@@ -38,26 +52,15 @@ const LoginForm = ({setIsActive, active}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.white,
-    borderRadius: 5,
-    paddingHorizontal: 20,
-    paddingTop: 10,
-    margin: 20,
-    paddingBottom: 30,
-   
-  },
-  label: {
-    fontWeight: 'bold',
-    fontSize: 18,
-    color: '#000',
-    marginTop: 10,
+    paddingHorizontal: 30,
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: "column",
+    alignItems:'center'
   },
   input: {
     height: 35,
-    marginVertical: 12,
-    borderBottomWidth: 1,
-    padding: 10,
-    borderRadius: 5,
-
+    width: '100%',
   },
   title: {
     fontSize: 30,
@@ -70,6 +73,19 @@ const styles = StyleSheet.create({
     marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  inputBox: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    borderBottomWidth: 1,
+    marginVertical: 20,
+  },
+  logo: {
+    width: 250,
+    height: 200,
+    resizeMode: 'contain',
   },
 });
 
