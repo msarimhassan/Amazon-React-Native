@@ -1,17 +1,46 @@
 import React from 'react';
-import { View, StyleSheet, Text, } from 'react-native';
-
+import {View, StyleSheet, Text, Image} from 'react-native';
+import Electronics from '../../../images/Electronics.png';
 
 const CategoryCard = () => {
-    return <View style={styles.container}>
-        <Text>
-            Card
-    </Text>
-</View>;
-}
+  return (
+    <View style={styles.container}>
+      <Image source={Electronics} style={styles.image} />
+      <Text style={styles.cardtitle}>Electronics</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-container:{}
+    container: {
+      margin:10,
+    width: 170,
+    height: 200,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    borderRadius:5,
+    shadowOffset: {
+    width: 0,
+    height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
+  },
+  image: {
+    resizeMode: 'cover',
+    width: 100,
+    height: 100,
+  },
+  cardtitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+      color: '#000',
+    marginTop:20
+  },
 });
 
 export default CategoryCard;
