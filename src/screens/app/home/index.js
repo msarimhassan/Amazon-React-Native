@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import {Colors} from '../../../common';
-import {AppHeader} from '../../../components';
 import CategoryCard from './CategoryCard';
 import {config, Network, Urls} from '../../../config';
 
@@ -22,7 +21,6 @@ const HomeScreen = () => {
   // }
   return (
     <View style={{flex: 1}}>
-      <AppHeader />
       <ScrollView contentContainerStyle={styles.container}>
         {Array(10)
           .fill(0)

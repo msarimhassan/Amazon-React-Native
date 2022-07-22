@@ -3,6 +3,8 @@ export default {
     SplashScreen: 'SplashScreen',
     LoginScreen: 'LoginScreen',
     Home: 'HomeScreen',
-    Cart:'CartScreen',
+    Cart: 'CartScreen',
+    Products: 'ProductsScreen',
+    SingleProduct:'ProductDetailScreen'
 
  }

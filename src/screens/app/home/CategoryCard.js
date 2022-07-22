@@ -1,13 +1,15 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
+import {StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 import Electronics from '../../../images/Electronics.png';
-
+import { Routes } from '../../../common';
+import { useNavigation } from '@react-navigation/native';
 const CategoryCard = () => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={()=>navigation.navigate(Routes.Products)}>
       <Image source={Electronics} style={styles.image} />
       <Text style={styles.cardtitle}>Electronics</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
