@@ -1,6 +1,8 @@
 export default {
     
     SplashScreen: 'SplashScreen',
-    LoginScreen:'LoginScreen',
+    LoginScreen: 'LoginScreen',
+    Home: 'HomeScreen',
+    Cart:'CartScreen',
 
  }

@@ -1,5 +1,5 @@
 export default {
   white: '#fff',
-  header: '#6FFDC5',
-  font:'#000'
+  header: '#20B2AA',
+  font: '#000',
 };
