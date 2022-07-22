@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from './../screens/app/home';
+import HomeNavigator from './HomeNavigator';
 import CartScreen from '../screens/app/cart';
 import { Routes,Icons } from '../common';
 const Tab = createBottomTabNavigator();
@@ -14,7 +14,7 @@ const AppNavigator = () => {
       }}>
       <Tab.Screen
         name={Routes.Home}
-        component={HomeScreen}
+        component={HomeNavigator}
         listeners={{tabPress: e => setRoute('Home')}}
         options={{
           tabBarIcon: () => (
