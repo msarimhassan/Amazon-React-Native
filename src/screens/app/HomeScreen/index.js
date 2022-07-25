@@ -6,26 +6,27 @@ import {config, Network, Urls} from '../../../config';
 
 const HomeScreen = () => {
   const [categoryList, setcategoryList] = useState([]);
-  // useEffect(() => {
-  //     Getcategories();
-  //     console.log(categoryList);
-  // }, [])
+  useEffect(() => {
+    Getcategories();
+  }, []);
 
-  // const Getcategories = async() => {
-  //     const response = await Network.get(Urls.getCategories('en-US'), (await config()).headers).then((response) => {
-  //         console.log(response);
-  //     })
-  //     if (response.ok) {
-  //         setcategoryList(response.data.categories);
-  //     }
-  // }
+  const Getcategories = async () => {
+    const response = await Network.get(
+      Urls.getCategories('en-US'),
+      (
+        await config()
+      ).headers,
+    );
+    console.log(response.data);
+    if (response.ok) {
+      setcategoryList(response.data.categories);
+    }
+  };
   return (
     <View style={{flex: 1}}>
       <ScrollView contentContainerStyle={styles.container}>
-        {Array(10)
-          .fill(0)
-          .map((category, index) => {
-            return <CategoryCard key={index} />;
+        {categoryList?.map((category, index) => {
+            return <CategoryCard key={index} id={category._id} title={category.name} image={category.imageUrl} />;
           })}
       </ScrollView>
     </View>

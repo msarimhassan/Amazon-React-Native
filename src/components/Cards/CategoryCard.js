@@ -2,15 +2,14 @@ import React from 'react';
 import {StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 import {Routes} from '../../common';
 import {useNavigation} from '@react-navigation/native';
-import Electronics from '../../../assets/images/Electronics.png';
-const CategoryCard = () => {
+const CategoryCard = ({id, title, image}) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate(Routes.Products)}>
-      <Image source={Electronics} style={styles.image} />
-      <Text style={styles.cardtitle}>Electronics</Text>
+      onPress={() => navigation.navigate(Routes.Products, {categoryId: id})}>
+      <Image source={{uri: image}} style={styles.image} />
+      <Text style={styles.cardtitle}>{title}</Text>
     </TouchableOpacity>
   );
 };
