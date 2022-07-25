@@ -7,6 +7,8 @@ export default {
     Products: 'ProductsScreen',
     SingleProduct: 'ProductDetailScreen',
     Details: 'DetailsScreen',
-    Orderdetails:'OrderDetailScreen'
+    Orderdetails: 'OrderDetailScreen',
+    profile: 'Profile',
+    profileScreen:'ProfileScreen'
 
  }

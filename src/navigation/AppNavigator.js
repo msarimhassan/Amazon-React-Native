@@ -2,6 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import HomeNavigator from './HomeNavigator';
+import ProfileNavigator from './ProfileNavigator';
 import CartScreen from '../screens/app/CartScreen';
 import {Routes, Icons,Colors} from '../common';
 import {AppHeader} from '../components';
@@ -39,6 +40,19 @@ const AppNavigator = () => {
             tabBarIcon: ({focused, size, color}) => (
               <Icons.AntDesign
                 name="shoppingcart"
+                size={focused ? 30 : size}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name={Routes.profile}
+          component={ProfileNavigator}
+          options={{
+            tabBarIcon: ({focused, size, color}) => (
+              <Icons.AntDesign
+                name="user"
                 size={focused ? 30 : size}
                 color={color}
               />
