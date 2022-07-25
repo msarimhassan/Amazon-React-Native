@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
-import CartCard from './CartCard';
+import CartCard from '../../../components/Cards/CartCard';
 
 const CartScreen = () => {
     return (

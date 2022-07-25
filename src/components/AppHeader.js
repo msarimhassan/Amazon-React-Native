@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image,StatusBar} from 'react-native';
-import Logo from '../images/Amazon.png';
+import Logo from '../../assets/images/Amazon.png';
 import { Icons } from '../common';
 const AppHeader = () => {
     return (

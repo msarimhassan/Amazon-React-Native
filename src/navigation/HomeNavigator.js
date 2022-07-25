@@ -2,9 +2,9 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Routes } from "../common";
-import HomeScreen from "../screens/app/home";
-import ProductsScreen from "../screens/app/products";
-import ProductdetailScreen from '../screens/app/productDetails';
+import HomeScreen from "../screens/app/HomeScreen";
+import ProductsScreen from "../screens/app/ProductScreen";
+import ProductdetailScreen from '../screens/app/ProductDetailScreen';
 
 const Screen = createNativeStackNavigator();
 

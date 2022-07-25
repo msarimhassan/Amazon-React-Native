@@ -10,7 +10,7 @@ import {
 import {Colors} from '../../../common';
 import { Button } from '../../../components';
 import { Entypo } from '../../../common/Icons';
-import Logo from '../../../images/Amazon.png';
+import Logo from '../../../../assets/images/Amazon.png';
 const SignupForm = ({active, setIsActive}) => {
   return (
     <View style={styles.container}>

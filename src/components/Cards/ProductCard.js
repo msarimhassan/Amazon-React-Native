@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
-import Headphones from '../../../images/Headphones.png';
+import Headphones from '../../../assets/images/Headphones.png';
 import { useNavigation } from '@react-navigation/native';
-import { Routes } from '../../../common';
+import { Routes } from '../../common';
 
 const ProductCard = () => {
   const navigation = useNavigation();

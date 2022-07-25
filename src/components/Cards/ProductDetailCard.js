@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
-import Headphones from '../../../images/Headphones.png';
+import Headphones from '../../../assets/images/Headphones.png';
 
 const Card = () => {
     return (

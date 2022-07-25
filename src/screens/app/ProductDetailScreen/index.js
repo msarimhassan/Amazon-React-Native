@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import Card from './Card';
+import Card from '../../../components/Cards/ProductDetailCard';
 
 const ProductdetailScreen = () => {
     return <ScrollView style={styles.container}>

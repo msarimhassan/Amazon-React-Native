@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from 'react-native';
-import Headphones from '../../../images/Headphones.png';
-import {Icons} from '../../../common';
+import Headphones from '../../../assets/images/Headphones.png';
+import {Icons} from '../../common';
 const CartCard = () => {
   const [counter, setCounetr] = useState(1);
   return (

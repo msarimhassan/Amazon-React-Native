@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import {Colors} from '../../../common';
-import CategoryCard from './CategoryCard';
+import CategoryCard from '../../../components/Cards/CategoryCard.js';
 import {config, Network, Urls} from '../../../config';
 
 const HomeScreen = () => {
