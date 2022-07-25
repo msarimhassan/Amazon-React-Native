@@ -2,7 +2,9 @@ import React from 'react';
 import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import ProductCard from '../../../components/Cards/ProductCard';
 
-const ProductsScreen = () => {
+const ProductsScreen = ({ route }) => {
+  const { categoryId } = route.params;
+  console.log(categoryId);
   return (
     <View style={{flex: 1}}>
       <ScrollView contentContainerStyle={styles.container}>

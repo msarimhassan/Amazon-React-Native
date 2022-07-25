@@ -1,15 +1,18 @@
 import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
 import CartCard from '../../../components/Cards/CartCard';
+import { useNavigation } from '@react-navigation/native';
+import { Routes } from '../../../common';
 
 const CartScreen = () => {
+  const navigation = useNavigation();
     return (
       <ScrollView style={styles.container}>
         <View style={styles.subtotal}>
           <Text style={styles.price}>SubTotal</Text>
           <Text style={styles.price}>Rs1000</Text>
         </View>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate(Routes.Details)}>
           <Text style={styles.btntxt}>Proceed to Checkout</Text>
         </TouchableOpacity>
         {Array(10)

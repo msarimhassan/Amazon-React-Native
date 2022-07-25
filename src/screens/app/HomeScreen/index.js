@@ -17,7 +17,6 @@ const HomeScreen = () => {
         await config()
       ).headers,
     );
-    console.log(response.data);
     if (response.ok) {
       setcategoryList(response.data.categories);
     }

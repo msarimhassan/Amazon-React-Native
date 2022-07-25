@@ -5,6 +5,7 @@ export default {
     Home: 'HomeScreen',
     Cart: 'CartScreen',
     Products: 'ProductsScreen',
-    SingleProduct:'ProductDetailScreen'
+    SingleProduct: 'ProductDetailScreen',
+    Details:"DetailsScreen"
 
  }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Text,TouchableOpacity } from 'react-native';
 
-const Button = ({text}) => {
-    return <TouchableOpacity style={styles.container}>
+const Button = ({text,style}) => {
+  return <TouchableOpacity style={{ ...styles.container, ...style }}>
         <Text style={styles.btntext}>{text}</Text>
 </TouchableOpacity>;
 }
@@ -10,6 +10,7 @@ const Button = ({text}) => {
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
+
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -23,8 +24,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
-
     elevation: 3,
+   
   },
   btntext: {
     fontSize: 20,
