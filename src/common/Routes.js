@@ -6,6 +6,7 @@ export default {
     Cart: 'CartScreen',
     Products: 'ProductsScreen',
     SingleProduct: 'ProductDetailScreen',
-    Details:"DetailsScreen"
+    Details: 'DetailsScreen',
+    Orderdetails:'OrderDetailScreen'
 
  }

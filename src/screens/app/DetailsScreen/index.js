@@ -1,8 +1,9 @@
 import React,{useState} from 'react';
 import {View, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity, ScrollView} from 'react-native';
-import {Colors} from '../../../common';
+import {Colors, Routes} from '../../../common';
 import { SelectableCard, PaymentMethodCard } from '../../../components/Cards';
-import { Button} from '../../../components';
+import { Button } from '../../../components';
+import { useNavigation } from '@react-navigation/native';
 
 const dummyData = [
   {
@@ -44,6 +45,7 @@ const DetailsScreen = () => {
   const [selectedAddress, setSelectedAddress] = useState({});
   const [paymentMethod, setpaymentMethod] = useState({});
   const [selectedCard, setselectedCard] = useState({});
+  const navigation = useNavigation();
   return (
     <ScrollView style={{flex:1,backgroundColor:Colors.white}}>
       <View style={styles.container}>
@@ -104,7 +106,7 @@ const DetailsScreen = () => {
             })}
           </View>
         ) : null}
-        <Button style={styles.nextBtn} text='Next'/>
+        <Button style={styles.nextBtn} text='Next' onPress={()=>navigation.navigate(Routes.Orderdetails)} />
       </View>
     </ScrollView>
   );
