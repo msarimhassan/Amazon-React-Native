@@ -10,7 +10,6 @@ const Button = ({text,style,onPress}) => {
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
-
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
