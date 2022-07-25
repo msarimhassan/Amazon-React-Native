@@ -9,6 +9,9 @@ export default {
     Details: 'DetailsScreen',
     Orderdetails: 'OrderDetailScreen',
     profile: 'Profile',
-    profileScreen:'ProfileScreen'
+    profileScreen: 'ProfileScreen',
+    orderScreen: 'OrderScreen',
+    cardScreen: 'CardScreen',
+    addressScreen:'AddressScreen'
 
  }

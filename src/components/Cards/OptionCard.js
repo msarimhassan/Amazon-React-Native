@@ -2,9 +2,9 @@ import React from 'react';
 import {TouchableOpacity, StyleSheet, Text,View} from 'react-native';
 import {Colors, Icons} from '../../common';
 
-const OptionCard = ({name,icon}) => {
+const OptionCard = ({name,icon,onPress}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View>
         <Icons.AntDesign name={icon} size={30} color={Colors.amazonColor} />
           </View>
