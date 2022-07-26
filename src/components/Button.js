@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text,TouchableOpacity } from 'react-native';
+import { Colors } from '../common';
 
 const Button = ({text,style,onPress}) => {
   return <TouchableOpacity style={{ ...styles.container, ...style }} onPress={onPress}>
@@ -24,6 +25,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
+    borderColor:Colors.amazonColor,
    
   },
   btntext: {
