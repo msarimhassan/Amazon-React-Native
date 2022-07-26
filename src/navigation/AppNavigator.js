@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeNavigator from './HomeNavigator';
 import ProfileNavigator from './ProfileNavigator';
 import CartNavigator from './CartNavigator';
+import ChatNavigator from './ChatNavigator';
 import {Routes, Icons,Colors} from '../common';
 import {AppHeader} from '../components';
 
@@ -18,7 +19,7 @@ const AppNavigator = () => {
           tabBarShowLabel: false,
           headerShown: false,
           tabBarActiveTintColor: Colors.activeTint,
-          tabBarHideOnKeyboard:true,
+          tabBarHideOnKeyboard: true,
         }}>
         <Tab.Screen
           name={Routes.Home}
@@ -41,6 +42,20 @@ const AppNavigator = () => {
             tabBarIcon: ({focused, size, color}) => (
               <Icons.AntDesign
                 name="shoppingcart"
+                size={focused ? 30 : size}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name={Routes.chat}
+          component={ChatNavigator}
+          options={{
+            tabBarBadge: 3,
+            tabBarIcon: ({focused, size, color}) => (
+              <Icons.AntDesign
+                name="message1"
                 size={focused ? 30 : size}
                 color={color}
               />

@@ -5,7 +5,8 @@ export default {
     Home: 'HomeScreen',
     shopping:'Cart',
     Cart: 'Cart',
-    cartScreen:'CartScreen',
+    cartScreen: 'CartScreen',
+    'chatScreen':'ChatScreeen',
     Products: 'ProductsScreen',
     SingleProduct: 'ProductDetailScreen',
     Details: 'DetailsScreen',
@@ -19,6 +20,7 @@ export default {
     myOrder: 'MyOrderScreen',
     selectLanguage: 'SelectLanguageScreen',
     addressForm: 'AddressFormScreen',
-    cardForm:'CardFormScreen'
+    cardForm: 'CardFormScreen',
+    chat:'Chat',
 
  }

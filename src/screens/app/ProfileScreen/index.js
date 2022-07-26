@@ -15,7 +15,7 @@ const options = [
     id: 1,
     name: 'Select Language',
     iconName: 'zhihu',
-    link:Routes.selectLanguage
+    link: Routes.selectLanguage,
   },
   {
     id: 2,
