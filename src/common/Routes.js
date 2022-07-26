@@ -13,6 +13,7 @@ export default {
     orderScreen: 'OrderScreen',
     cardScreen: 'CardScreen',
     addressScreen: 'AddressScreen',
-    editProfile:'EditProfileScreen'
+    editProfile: 'EditProfileScreen',
+    myOrder:'MyOrderScreen'
 
  }
