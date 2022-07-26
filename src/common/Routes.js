@@ -12,6 +12,7 @@ export default {
     profileScreen: 'ProfileScreen',
     orderScreen: 'OrderScreen',
     cardScreen: 'CardScreen',
-    addressScreen:'AddressScreen'
+    addressScreen: 'AddressScreen',
+    editProfile:'EditProfileScreen'
 
  }

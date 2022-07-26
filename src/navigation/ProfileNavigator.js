@@ -5,6 +5,7 @@ import ProfileScreen from '../screens/app/ProfileScreen';
 import OrderScreen from '../screens/app/OrderScreen';
 import CardScreen from '../screens/app/CardScreen';
 import AddressScreen from '../screens/app/AddressScreen';
+import EditProfileScreen from '../screens/app/EditProfileScreen';
 
 const Screen = createNativeStackNavigator();
 
@@ -14,6 +15,7 @@ const ProfileNavigator = () => {
        screenOptions={{headerShown: false}}
        initialRouteName={Routes.profileScreen}>
        <Screen.Screen name={Routes.profileScreen} component={ProfileScreen} />
+       <Screen.Screen name={Routes.editProfile} component={EditProfileScreen} />
        <Screen.Screen name={Routes.orderScreen} component={OrderScreen} />
        <Screen.Screen name={Routes.cardScreen} component={CardScreen} />
        <Screen.Screen name={Routes.addressScreen} component={AddressScreen} />

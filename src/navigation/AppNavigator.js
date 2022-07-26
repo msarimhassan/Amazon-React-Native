@@ -18,6 +18,7 @@ const AppNavigator = () => {
           tabBarShowLabel: false,
           headerShown: false,
           tabBarActiveTintColor: Colors.activeTint,
+          tabBarHideOnKeyboard:true,
         }}>
         <Tab.Screen
           name={Routes.Home}

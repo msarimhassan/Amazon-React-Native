@@ -1,12 +1,14 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image,TouchableOpacity} from 'react-native';
-import {Colors,Icons} from '../../common';
+import {Colors,Icons, Routes} from '../../common';
 import Logo from '../../../assets/images/Amazon.png';
+import { useNavigation } from '@react-navigation/native';
 
 const ProfileCard = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.iconBox}>
+      <TouchableOpacity style={styles.iconBox} onPress={()=>navigation.navigate(Routes.editProfile)}>
         <Icons.Feather name="edit" color={Colors.amazonColor} size={25} />
       </TouchableOpacity>
       <View style={styles.box}>
