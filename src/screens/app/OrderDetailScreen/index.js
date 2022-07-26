@@ -1,13 +1,24 @@
 import React from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView,TouchableOpacity} from 'react-native';
 import Bill from './Bill';
 import {OrderProductCard} from '../../../components/Cards';
-import {Colors} from '../../../common';
+import {Colors,Icons} from '../../../common';
 import Button from '../../../components/Button';
+import { useNavigation } from '@react-navigation/native';
 
 const OrderDetailScreen = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.box} showsVerticalScrollIndicator={false}>
+      <TouchableOpacity
+        style={styles.backbtn}
+        onPress={() => navigation.goBack()}>
+        <Icons.AntDesign
+          name="arrowleft"
+          color={Colors.amazonColor}
+          size={30}
+        />
+      </TouchableOpacity>
       <View style={styles.container}>
         <View>
           {Array(2)
@@ -36,6 +47,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     borderRadius: 20,
   },
+  backbtn: {
+    marginTop: 10,
+    marginLeft:10,
+  }
 });
 
 export default OrderDetailScreen;

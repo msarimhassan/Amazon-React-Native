@@ -10,9 +10,11 @@ import {
 import {Colors, Icons} from '../../../common';
 import ImagePicker from 'react-native-image-crop-picker';
 import {ScrollView} from 'native-base';
-import {Button} from '../../../components';
+import { Button, } from '../../../components';
+import { useNavigation } from '@react-navigation/native';
 
 const EditProfileScreen = () => {
+  const navigation = useNavigation();
   const [encodedBase64, setencodedBase64] = useState();
   const [imageMime, setImageMime] = useState();
   const PickImage = () => {
@@ -29,6 +31,15 @@ const EditProfileScreen = () => {
   };
   return (
     <ScrollView style={styles.container}>
+      <TouchableOpacity
+        style={styles.backbtn}
+        onPress={() => navigation.goBack()}>
+        <Icons.AntDesign
+          name="arrowleft"
+          color={Colors.amazonColor}
+          size={30}
+        />
+      </TouchableOpacity>
       <View>
         <View style={styles.ImageContainer}>
           <TouchableOpacity style={styles.Picker} onPress={() => PickImage()}>
@@ -126,6 +137,10 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
     fontSize:16
   },
+  backbtn: {
+    marginTop: 10,
+    marginLeft:10
+  }
 });
 
 export default EditProfileScreen;

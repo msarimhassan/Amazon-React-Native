@@ -1,7 +1,7 @@
 import { ScrollView } from 'native-base';
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import {Colors, Routes} from '../../../common';
+import {View, StyleSheet,TouchableOpacity} from 'react-native';
+import {Colors, Routes,Icons} from '../../../common';
 import Button from '../../../components/Button';
 import { CreditCard } from '../../../components/Cards';
 import { useNavigation } from '@react-navigation/native';
@@ -10,12 +10,27 @@ const CardScreen = () => {
   const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
-      <Button text={'Add Card'} style={styles.btn} onPress={()=>navigation.navigate(Routes.cardForm) } />
+      <TouchableOpacity
+        style={styles.backbtn}
+        onPress={() => navigation.goBack()}>
+        <Icons.AntDesign
+          name="arrowleft"
+          color={Colors.amazonColor}
+          size={30}
+        />
+      </TouchableOpacity>
+      <Button
+        text={'Add Card'}
+        style={styles.btn}
+        onPress={() => navigation.navigate(Routes.cardForm)}
+      />
 
       <View style={styles.cardContainer}>
-              {Array(2).fill(0).map(() => {
-           return <CreditCard />;
-       })} 
+        {Array(2)
+          .fill(0)
+          .map(() => {
+            return <CreditCard />;
+          })}
       </View>
     </ScrollView>
   );
@@ -33,6 +48,10 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     alignItems: 'center',
+  },
+  backbtn: {
+    marginTop: 10,
+    marginLeft: 10,
   },
 });
 

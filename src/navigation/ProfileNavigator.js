@@ -26,6 +26,7 @@ const ProfileNavigator = () => {
       <Screen.Screen name={Routes.myOrder} component={MyOrderScreen} />
       <Screen.Screen name={Routes.addressForm} component={AddressFormScreen} />
       <Screen.Screen name={Routes.cardForm} component={CardFormScreen} />
+      <Screen.Screen name={Routes.selectLanguage} component={SelectLanguageScreen} />
     </Screen.Navigator>
   );
 };

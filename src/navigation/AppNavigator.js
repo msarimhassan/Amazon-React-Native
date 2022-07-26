@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import HomeNavigator from './HomeNavigator';
 import ProfileNavigator from './ProfileNavigator';
-import CartScreen from '../screens/app/CartScreen';
+import CartNavigator from './CartNavigator';
 import {Routes, Icons,Colors} from '../common';
 import {AppHeader} from '../components';
 
@@ -35,7 +35,7 @@ const AppNavigator = () => {
         />
         <Tab.Screen
           name={Routes.Cart}
-          component={CartScreen}
+          component={CartNavigator}
           options={{
             tabBarBadge: 3,
             tabBarIcon: ({focused, size, color}) => (

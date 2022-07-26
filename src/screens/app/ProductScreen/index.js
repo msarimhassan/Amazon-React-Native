@@ -1,20 +1,29 @@
 import React from 'react';
-import {View, StyleSheet, Text, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import ProductCard from '../../../components/Cards/ProductCard';
+import { Icons, Colors } from '../../../common';
+import { useNavigation } from '@react-navigation/native';
 
 const ProductsScreen = ({ route }) => {
   const { categoryId } = route.params;
-  console.log(categoryId);
+  const navigation = useNavigation();
   return (
-    <View style={{flex: 1}}>
-      <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView style={styles.parent}>
+      <TouchableOpacity style={styles.backbtn} onPress={()=>navigation.goBack()}>
+        <Icons.AntDesign
+          name="arrowleft"
+          color={Colors.amazonColor}
+          size={30}
+        />
+      </TouchableOpacity>
+      <View style={styles.container}>
         {Array(5)
           .fill(0)
           .map((product, index) => {
             return <ProductCard key={index} />;
           })}
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -24,8 +33,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     paddingHorizontal: 15,
-    backgroundColor: '#fff',
+    marginBottom:20
+  
   },
+  parent: {
+    backgroundColor: Colors.white,
+    height:'100%'
+  },
+  backbtn: {
+    marginLeft: 20,
+    marginTop:10
+  }
 });
 
 export default ProductsScreen;

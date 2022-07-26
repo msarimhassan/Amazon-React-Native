@@ -1,12 +1,24 @@
+import { useNavigation } from '@react-navigation/native';
+
 import React, {useState} from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import { Colors } from '../../../common';
+import {View, StyleSheet, Text, TouchableOpacity,ScrollView} from 'react-native';
+import { Colors,Icons } from '../../../common';
 import {OrderCard,OrderHistoryCard} from '../../../components/Cards';
 
 const OrderScreen = () => {
   const [isSelected, setisSelected] = useState(true);
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      <TouchableOpacity
+        style={styles.backbtn}
+        onPress={() => navigation.goBack()}>
+        <Icons.AntDesign
+          name="arrowleft"
+          color={Colors.amazonColor}
+          size={30}
+        />
+      </TouchableOpacity>
       <View style={styles.optionContainer}>
         <TouchableOpacity
           style={isSelected ? styles.selectedContainer : null}
@@ -22,17 +34,22 @@ const OrderScreen = () => {
             Order History
           </Text>
         </TouchableOpacity>
-          </View>
-          {/* Content */}
-          <View style={styles.contentContainer}>
-              {isSelected ? <>
-                  {Array(3).fill(0).map((index) => {
-                 return <OrderCard key={index}/>;
-             })}</> :<OrderHistoryCard/>
-              }
-              
-              </View>
-    </View>
+      </View>
+      {/* Content */}
+      <View style={styles.contentContainer}>
+        {isSelected ? (
+          <>
+            {Array(3)
+              .fill(0)
+              .map(index => {
+                return <OrderCard key={index} />;
+              })}
+          </>
+        ) : (
+          <OrderHistoryCard />
+        )}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -64,7 +81,11 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         marginHorizontal: 35,
-  }
+  },
+  backbtn: {
+    marginTop: 10,
+    marginLeft:10
+    }
 });
 
 export default OrderScreen;

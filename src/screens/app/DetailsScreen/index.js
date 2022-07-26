@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
-import {View, StyleSheet, Text, TouchableWithoutFeedback, TouchableOpacity, ScrollView} from 'react-native';
-import {Colors, Routes} from '../../../common';
+import {View, StyleSheet, Text, TouchableOpacity, ScrollView} from 'react-native';
+import {Colors, Routes,Icons} from '../../../common';
 import { SelectableCard, PaymentMethodCard } from '../../../components/Cards';
 import { Button } from '../../../components';
 import { useNavigation } from '@react-navigation/native';
@@ -47,7 +47,16 @@ const DetailsScreen = () => {
   const [selectedCard, setselectedCard] = useState({});
   const navigation = useNavigation();
   return (
-    <ScrollView style={{flex:1,backgroundColor:Colors.white}}>
+    <ScrollView style={{flex: 1, backgroundColor: Colors.white}}>
+      <TouchableOpacity
+        style={styles.backbtn}
+        onPress={() => navigation.goBack()}>
+        <Icons.AntDesign
+          name="arrowleft"
+          color={Colors.amazonColor}
+          size={30}
+        />
+      </TouchableOpacity>
       <View style={styles.container}>
         <View style={styles.detailbox}>
           <Text style={styles.title}>Select Address:</Text>
@@ -106,7 +115,11 @@ const DetailsScreen = () => {
             })}
           </View>
         ) : null}
-        <Button style={styles.nextBtn} text='Next' onPress={()=>navigation.navigate(Routes.Orderdetails)} />
+        <Button
+          style={styles.nextBtn}
+          text="Next"
+          onPress={() => navigation.navigate(Routes.Orderdetails)}
+        />
       </View>
     </ScrollView>
   );
@@ -156,6 +169,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 10,
   },
+  backbtn: {
+    marginTop: 10,
+    marginLeft:10,
+  }
 });
 
 export default DetailsScreen;
