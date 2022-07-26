@@ -15,6 +15,8 @@ export default {
     addressScreen: 'AddressScreen',
     editProfile: 'EditProfileScreen',
     myOrder: 'MyOrderScreen',
-    selectLanguage:'SelectLanguageScreen'
+    selectLanguage: 'SelectLanguageScreen',
+    addressForm: 'AddressFormScreen',
+    cardForm:'CardFormScreen'
 
  }

@@ -6,6 +6,7 @@ import OptionCard from './OptionCard';
 import OrderCard from './OrderCard';
 import OrderHistoryCard from './OrderHistoryCard';
 import CreditCard from './CreditCard';
+import AddressCard from './AddressCard';
 export {
   SelectableCard,
   PaymentMethodCard,
@@ -14,5 +15,6 @@ export {
   OptionCard,
   OrderCard,
     OrderHistoryCard,
-  CreditCard
+  CreditCard,
+  AddressCard
 };

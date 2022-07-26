@@ -1,14 +1,16 @@
 import { ScrollView } from 'native-base';
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import {Colors} from '../../../common';
+import {Colors, Routes} from '../../../common';
 import Button from '../../../components/Button';
-import {CreditCard} from '../../../components/Cards';
+import { CreditCard } from '../../../components/Cards';
+import { useNavigation } from '@react-navigation/native';
 
 const CardScreen = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
-      <Button text={'Add Card'} style={styles.btn} />
+      <Button text={'Add Card'} style={styles.btn} onPress={()=>navigation.navigate(Routes.cardForm) } />
 
       <View style={styles.cardContainer}>
               {Array(2).fill(0).map(() => {
