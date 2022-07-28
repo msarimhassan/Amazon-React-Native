@@ -1,27 +1,41 @@
-import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import CartCard from '../../../components/Cards/CartCard';
-import { useNavigation } from '@react-navigation/native';
-import { Routes } from '../../../common';
-import { useSelector } from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import {Routes} from '../../../common';
+import {useSelector, useDispatch} from 'react-redux';
+import {Calculate} from '../../../redux/CartSlice';
 const CartScreen = () => {
   const products = useSelector(state => state.cart.cartProducts);
+  useEffect(() => {
+    dispatch(Calculate(products));
+  }, [products]);
+  const totalPrice = useSelector(state => state.cart.totalPrice);
   const navigation = useNavigation();
-    return (
-      <ScrollView style={styles.container}>
-        <View style={styles.subtotal}>
-          <Text style={styles.price}>SubTotal</Text>
-          <Text style={styles.price}>Rs1000</Text>
-        </View>
-        <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate(Routes.Details)}>
-          <Text style={styles.btntxt}>Proceed to Checkout</Text>
-        </TouchableOpacity>
-        {products.map((product, index) => {
-            return <CartCard key={index} product={product} />;
-          })}
-      </ScrollView>
-    );
-}
+  const dispatch = useDispatch();
+  return (
+    <ScrollView style={styles.container}>
+      <View style={styles.subtotal}>
+        <Text style={styles.price}>SubTotal</Text>
+        <Text style={styles.price}>Rs{totalPrice}</Text>
+      </View>
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={() => navigation.navigate(Routes.Details)}>
+        <Text style={styles.btntxt}>Proceed to Checkout</Text>
+      </TouchableOpacity>
+      {products.map((product, index) => {
+        return <CartCard key={index} product={product} />;
+      })}
+    </ScrollView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +48,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop:10,
+    marginTop: 10,
   },
   btn: {
     display: 'flex',
@@ -43,7 +57,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: '#f5bb5c',
     paddingVertical: 10,
-    marginTop:10,
+    marginTop: 10,
     width: '100%',
     paddingHorizontal: 15,
     shadowColor: '#000',
