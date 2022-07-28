@@ -1,5 +1,3 @@
-
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, StyleSheet,ScrollView} from 'react-native';
 import { Colors } from '../../../common';
