@@ -6678,6 +6678,14 @@ react-native-codegen@^0.69.1:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-flash-message@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-flash-message/-/react-native-flash-message-0.2.1.tgz#2c956000d60569984b82bff1b6b7b3bff31b4eb6"
+  integrity sha512-jVLIygLSBEl+GZur6wyxLtla/v8dUAy1dPVwDpjAiGg9D4D5gvkdE7ZGJ9hY9svVriF464mgNi3qXQ9AP/+pNg==
+  dependencies:
+    prop-types "^15.8.1"
+    react-native-iphone-x-helper "^1.3.1"
+
 react-native-gradle-plugin@^0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.7.tgz#96602f909745239deab7b589443f14fce5da2056"
@@ -6688,7 +6696,7 @@ react-native-image-crop-picker@^0.38.0:
   resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.38.0.tgz#3f67a0ec40618e3cd6e05d3e7b90e70d01eaddf8"
   integrity sha512-FaLASXOP7R23pi20vMiVlXl0Y7cwTdl7y7yBqrlrsSH9gl9ibsU5y4mYWPYRbe8x9F/3zPGUE+1F0Gj/QF/peg==
 
-react-native-iphone-x-helper@^1.0.3:
+react-native-iphone-x-helper@^1.0.3, react-native-iphone-x-helper@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==

@@ -1,22 +1,27 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image,TouchableOpacity} from 'react-native';
-import {Colors,Icons, Routes} from '../../common';
+import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
+import {Colors, Icons, Routes} from '../../common';
 import Logo from '../../../assets/images/Amazon.png';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 
 const ProfileCard = () => {
   const navigation = useNavigation();
+  const currentUser = useSelector(state => state.auth.user);
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.iconBox} onPress={()=>navigation.navigate(Routes.editProfile)}>
+      <TouchableOpacity
+        style={styles.iconBox}
+        onPress={() => navigation.navigate(Routes.editProfile)}>
         <Icons.Feather name="edit" color={Colors.amazonColor} size={25} />
       </TouchableOpacity>
       <View style={styles.box}>
         <View style={styles.profileContainer}>
-          <Image source={Logo} style={styles.image} />
+          <Image source={{uri:currentUser.image}} style={styles.image} />
           <View>
-            <Text style={styles.title}>Sarim Hassan</Text>
-            <Text style={styles.email}>msarimdev@gmail.com</Text>
+            <Text style={styles.title}>{currentUser.name}</Text>
+            <Text style={styles.email}>{currentUser.email}</Text>
           </View>
         </View>
       </View>
@@ -37,15 +42,17 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     resizeMode: 'contain',
+    borderRadius:50,
   },
   profileContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    paddingVertical:10,
   },
   title: {
     fontWeight: 'bold',
@@ -56,12 +63,12 @@ const styles = StyleSheet.create({
     color: Colors.font,
     fontSize: 16,
   },
-    box: { paddingHorizontal: 50 },
-    iconBox: {
-        position: 'absolute',
-        right: 15,
-        top:10
-  }
+  box: {paddingHorizontal: 50},
+  iconBox: {
+    position: 'absolute',
+    right: 15,
+    top: 10,
+  },
 });
 
 export default ProfileCard;

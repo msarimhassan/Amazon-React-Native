@@ -14,7 +14,8 @@ import {useFormik} from 'formik';
 import Logo from '../../../../assets/images/Amazon.png';
 import {Network, Urls, config} from '../../../config';
 import {useDispatch} from 'react-redux';
-import {Login} from '../../../redux/AuthSlice';
+import { Login } from '../../../redux/AuthSlice';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 
 const initialValues = {
   email: '',
@@ -24,7 +25,6 @@ const initialValues = {
 const LoginForm = ({setIsActive, active}) => {
   const dispatch = useDispatch();
   const onSubmit = async values => {
-    console.log({ values });
     const response = await Network.post(
       Urls.login,
       values,
@@ -33,9 +33,11 @@ const LoginForm = ({setIsActive, active}) => {
       ).headers,
     );
     if (!response.ok) {
-      return console.log(response.data.error);
+      return showMessage({
+        message: response.data.error,
+        type:'danger'
+      })
     }
-    console.log(response.data);
     dispatch(Login(response.data));
   };
   const {values, handleChange, handleSubmit, errors} = useFormik({
