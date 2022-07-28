@@ -4,16 +4,18 @@ import Headphones from '../../../assets/images/Headphones.png';
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../common';
 
-const ProductCard = () => {
+const ProductCard = ({product}) => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.container} onPress={()=>navigation.navigate(Routes.SingleProduct)}>
-      <Image source={Headphones} style={styles.image} />
-      <View>
-        <Text style={styles.productName}>Headphones</Text>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate(Routes.SingleProduct)}>
+      <Image source={{uri: product?.imageUrl}} style={styles.image} />
+      <View style={styles.productDetailContainer}>
+        <Text style={styles.productName}>{product?.name}</Text>
         <Text style={{fontSize: 17, marginTop: 5}}>
           Price:
-          <Text style={styles.productPrice}>Rs1000</Text>
+          <Text style={styles.productPrice}>Rs{product?.sellingPrice}</Text>
         </Text>
         <TouchableOpacity style={styles.cartBtn}>
           <Text style={styles.btntext}>Add to Cart</Text>
@@ -82,6 +84,9 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: 'bold',
   },
+  productDetailContainer: {
+    width:200,
+  }
 });
 
 export default ProductCard;
