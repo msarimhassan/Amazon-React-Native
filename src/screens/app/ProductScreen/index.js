@@ -29,7 +29,6 @@ const ProductsScreen = ({ route }) => {
     );
     setProducts(response.data.products);
     settotalPages(response.data.totalpages);
-    console.log({ categoryId });
     setLoading(false);
   };
   return (

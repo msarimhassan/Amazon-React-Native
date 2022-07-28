@@ -1,14 +1,20 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
-import Headphones from '../../../assets/images/Headphones.png';
+import {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 
-const Card = () => {
-    return (
-       
+const Card = ({product}) => {
+  console.log({product});
+  return (
     <View style={styles.container}>
-      <Image source={Headphones} style={styles.image} />
+      <Image source={{uri: product?.imageUrl}} style={styles.image} />
       <View style={styles.productInfo}>
-        <Text style={styles.productName}>HeadPhones</Text>
+        <Text style={styles.productName}>{product?.name}</Text>
         <View style={styles.info}>
           <Text style={{fontSize: 16}}>
             Price:
@@ -17,27 +23,25 @@ const Card = () => {
           <Text style={styles.status}>In Stock</Text>
         </View>
         <Text style={styles.details}>
-          long established fact that a reader will be distracted by the readable
-          content of a page when looking at its layout. The point of using Lorem
-          Ipsum is that it has a more-or-less normal distribution
+          {product?.description}
         </Text>
       </View>
       <TouchableOpacity style={styles.cartBtn}>
         <Text style={styles.btnText}>Add to Cart</Text>
       </TouchableOpacity>
-                </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-    container: {
+  container: {
     display: 'flex',
     alignItems: 'center',
     backgroundColor: '#fff',
     paddingTop: 5,
     paddingHorizontal: 5,
     height: '100%',
-    paddingBottom:10,
+    paddingBottom: 10,
   },
   image: {
     resizeMode: 'contain',
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
-      elevation: 3,
+    elevation: 3,
   },
   btnText: {
     fontSize: 18,
@@ -96,11 +100,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#000',
   },
-    details: {
-        marginTop:10,
-        fontSize: 17,
-        color:'#000'
-        
+  details: {
+    marginTop: 10,
+    fontSize: 17,
+    color: '#000',
   },
 });
 

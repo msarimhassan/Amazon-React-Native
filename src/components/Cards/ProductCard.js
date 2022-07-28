@@ -9,7 +9,7 @@ const ProductCard = ({product}) => {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate(Routes.SingleProduct)}>
+      onPress={() => navigation.navigate(Routes.SingleProduct,{productId:product?._id})}>
       <Image source={{uri: product?.imageUrl}} style={styles.image} />
       <View style={styles.productDetailContainer}>
         <Text style={styles.productName}>{product?.name}</Text>
