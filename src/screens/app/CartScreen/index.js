@@ -3,8 +3,9 @@ import { View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-nati
 import CartCard from '../../../components/Cards/CartCard';
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../../common';
-
+import { useSelector } from 'react-redux';
 const CartScreen = () => {
+  const products = useSelector(state => state.cart.cartProducts);
   const navigation = useNavigation();
     return (
       <ScrollView style={styles.container}>
@@ -15,10 +16,8 @@ const CartScreen = () => {
         <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate(Routes.Details)}>
           <Text style={styles.btntxt}>Proceed to Checkout</Text>
         </TouchableOpacity>
-        {Array(10)
-          .fill(0)
-          .map((cartItem, index) => {
-            return <CartCard key={index} />;
+        {products.map((product, index) => {
+            return <CartCard key={index} product={product} />;
           })}
       </ScrollView>
     );

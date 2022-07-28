@@ -7,27 +7,32 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from 'react-native';
-import Headphones from '../../../assets/images/Headphones.png';
-import {Icons} from '../../common';
-const CartCard = () => {
-  const [counter, setCounetr] = useState(1);
+import { Icons,Colors } from '../../common';
+import { useDispatch } from 'react-redux';
+import { Increment,Decrement,DeleteProduct } from '../../redux/CartSlice';
+const CartCard = ({ product }) => {
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
-      <Image source={Headphones} style={styles.image} />
-      <View>
-        <Text style={styles.productName}>Headphones</Text>
+      <TouchableOpacity style={styles.deletebtn} onPress={()=>dispatch(DeleteProduct(product))}>
+        <Icons.AntDesign name="delete" color={Colors.warning} size={25} />
+      </TouchableOpacity>
+      <Image source={{uri: product?.imageUrl}} style={styles.image} />
+      <View style={styles.detailedContainer}>
+        <Text style={styles.productName}>{product?.name}</Text>
         <Text style={{fontSize: 17, marginTop: 5}}>
           Price:
-          <Text style={styles.productPrice}>Rs1000</Text>
+          <Text style={styles.productPrice}>Rs{product?.sellingPrice}</Text>
         </Text>
         <View style={styles.quantity}>
           <TouchableWithoutFeedback
             style={styles.counter}
-            onPress={() => setCounetr(counter - 1)}>
+            onPress={() => dispatch(Decrement(product))}>
             <Icons.AntDesign name="minussquareo" size={25} color="#f5bb5c" />
           </TouchableWithoutFeedback>
-          <Text style={{fontSize: 25}}>{counter}</Text>
-          <TouchableWithoutFeedback onPress={() => setCounetr(counter + 1)}>
+          <Text style={{fontSize: 25}}>{product?.quantity}</Text>
+          <TouchableWithoutFeedback
+            onPress={() => dispatch(Increment(product))}>
             <Icons.AntDesign name="plussquareo" size={25} color="#f5bb5c" />
           </TouchableWithoutFeedback>
         </View>
@@ -83,6 +88,14 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: 'bold',
   },
+  detailedContainer: {
+    width:180
+  },
+  deletebtn: {
+    position: 'absolute',
+    top: 10,
+    right:5,
+  }
 });
 
 export default CartCard;
