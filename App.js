@@ -6,6 +6,7 @@ import { store } from './src/redux/store';
 import { Provider } from 'react-redux';
 import {persistStore} from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import Root from './src/components/Root';
 
 let persistor = persistStore(store);
 
@@ -16,8 +17,7 @@ const App = () => {
       <PersistGate persistor={persistor}>
         <NativeBaseProvider>
           <NavigationContainer>
-            {/* <AuthNavigator/> */}
-            <AppNavigator />
+           <Root/>
           </NavigationContainer>
         </NativeBaseProvider>
       </PersistGate>
