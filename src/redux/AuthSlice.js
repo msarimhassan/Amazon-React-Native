@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {setToken,removeToken} from '../utils/Storage';
+import {setToken, removeToken} from '../utils/Storage';
 
 const initialState = {
   token: null,
@@ -10,19 +10,19 @@ export const AuthSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    Login: async (state, action) => {
+    Login: (state, action) => {
       state.token = action.payload.token;
-      await setToken(token);
       state.user = action.payload.customer;
+      setToken(action.payload.token);
     },
-    Logout: async(state, action) => {
+    Logout: (state, action) => {
       state.token = null;
       state.user = null;
-     await removeToken();
+      removeToken();
     },
   },
 });
 
-export const { Login, Logout } = AuthSlice.actions;
+export const {Login, Logout} = AuthSlice.actions;
 
 export default AuthSlice.reducer;

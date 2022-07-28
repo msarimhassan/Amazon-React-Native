@@ -5,13 +5,44 @@ import {
   Text,
   TextInput,
   TouchableWithoutFeedback,
-  Image
+  Image,
 } from 'react-native';
-import { Colors } from '../../../common';
-import { Entypo } from '../../../common/Icons';
-import { Button } from '../../../components';
-import Logo from '../../../../assets/images/Amazon.png'
+import {Colors} from '../../../common';
+import {Entypo} from '../../../common/Icons';
+import {Button} from '../../../components';
+import {useFormik} from 'formik';
+import Logo from '../../../../assets/images/Amazon.png';
+import {Network, Urls, config} from '../../../config';
+import {useDispatch} from 'react-redux';
+import {Login} from '../../../redux/AuthSlice';
+
+const initialValues = {
+  email: '',
+  password: '',
+};
+
 const LoginForm = ({setIsActive, active}) => {
+  const dispatch = useDispatch();
+  const onSubmit = async values => {
+    console.log({ values });
+    const response = await Network.post(
+      Urls.login,
+      values,
+      (
+        await config()
+      ).headers,
+    );
+    if (!response.ok) {
+      return console.log(response.data.error);
+    }
+    console.log(response.data);
+    dispatch(Login(response.data));
+  };
+  const {values, handleChange, handleSubmit, errors} = useFormik({
+    initialValues,
+    onSubmit,
+  });
+
   return (
     <View style={styles.container}>
       <Image source={Logo} style={styles.logo} />
@@ -20,21 +51,28 @@ const LoginForm = ({setIsActive, active}) => {
         <View style={styles.inputBox}>
           <Entypo name="email" size={15} />
           <TextInput
+            id="email"
             style={styles.input}
             placeholder="Email"
+            name="email"
             placeholderTextColor="#000"
+            onChangeText={handleChange('email')}
+            value={values.email}
           />
         </View>
         <View style={styles.inputBox}>
           <Entypo name="key" size={15} />
           <TextInput
+            id="password"
             style={styles.input}
             placeholder="Password"
+            name="password"
             placeholderTextColor="#000"
+            onChangeText={handleChange('password')}
           />
         </View>
         <View style={{marginTop: 20}}>
-          <Button text="Login" />
+          <Button text="Login" onPress={handleSubmit} />
         </View>
         <View style={styles.info}>
           <Text>Dont have an Account?</Text>
@@ -55,8 +93,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     display: 'flex',
     justifyContent: 'center',
-    flexDirection: "column",
-    alignItems:'center'
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   input: {
     height: 35,

@@ -11,7 +11,13 @@ import {Colors} from '../../../common';
 import { Button } from '../../../components';
 import { Entypo } from '../../../common/Icons';
 import Logo from '../../../../assets/images/Amazon.png';
-const SignupForm = ({active, setIsActive}) => {
+const SignupForm = ({ active, setIsActive }) => {
+  
+  const Signup = () => {
+    console.log('Signup')
+  }
+
+
   return (
     <View style={styles.container}>
       <Image source={Logo} style={styles.logo} />
@@ -50,7 +56,7 @@ const SignupForm = ({active, setIsActive}) => {
           />
         </View>
         <View style={{marginTop: 20}}>
-          <Button text="Signup" />
+          <Button text="Signup" onPress={()=>Signup()} />
         </View>
         <View style={styles.info}>
           <Text>Already have an Account?</Text>

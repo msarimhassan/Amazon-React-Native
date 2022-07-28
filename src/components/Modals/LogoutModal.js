@@ -1,9 +1,12 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Modal from 'react-native-modal';
-import {Colors} from '../../common';
+import { Colors } from '../../common';
+import { Logout } from '../../redux/AuthSlice';
+import { useDispatch } from 'react-redux';
 
-const LogoutModal = ({isVisible,setisVisible}) => {
+const LogoutModal = ({ isVisible, setisVisible }) => {
+  const dispatch = useDispatch();
   return (
     <Modal isVisible={isVisible}>
       <View style={styles.container}>
@@ -12,7 +15,7 @@ const LogoutModal = ({isVisible,setisVisible}) => {
           <Text style={styles.logout}>Do you want to logout?</Text>
         </View>
         <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.NotLogout}>
+          <TouchableOpacity style={styles.NotLogout} onPress={()=>dispatch(Logout())}>
             <Text style={styles.btntext}>Yes</Text>
           </TouchableOpacity>
           <TouchableOpacity
