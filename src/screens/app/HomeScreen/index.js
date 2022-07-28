@@ -3,9 +3,11 @@ import {View, StyleSheet, ScrollView} from 'react-native';
 import {Colors} from '../../../common';
 import CategoryCard from '../../../components/Cards/CategoryCard.js';
 import {config, Network, Urls} from '../../../config';
+import AmazonLoader from '../../../../assets/animations';
 
 const HomeScreen = () => {
   const [categoryList, setcategoryList] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     Getcategories();
   }, []);
@@ -17,17 +19,31 @@ const HomeScreen = () => {
         await config()
       ).headers,
     );
-    if (response.ok) {
-      setcategoryList(response.data.categories);
+    setcategoryList(response.data.categories);
+
+    if (!response.ok) {
+      console.log(response.data.error);
     }
+    setLoading(false);
   };
   return (
     <View style={{flex: 1}}>
-      <ScrollView contentContainerStyle={styles.container}>
-        {categoryList?.map((category, index) => {
-            return <CategoryCard key={index} id={category._id} title={category.name} image={category.imageUrl} />;
+      {loading ? (
+        <AmazonLoader />
+      ) : (
+        <ScrollView contentContainerStyle={styles.container}>
+          {categoryList?.map((category, index) => {
+            return (
+              <CategoryCard
+                key={index}
+                id={category._id}
+                title={category.name}
+                image={category.imageUrl}
+              />
+            );
           })}
-      </ScrollView>
+        </ScrollView>
+      )}
     </View>
   );
 };
