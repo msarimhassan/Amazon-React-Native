@@ -9,13 +9,13 @@ import {
 } from 'react-native';
 import {Colors} from '../../../common';
 import {Entypo} from '../../../common/Icons';
-import {Button} from '../../../components';
+import {Button,ErrorMessage} from '../../../components';
 import {useFormik} from 'formik';
 import Logo from '../../../../assets/images/Amazon.png';
 import {Network, Urls, config} from '../../../config';
 import {useDispatch} from 'react-redux';
 import { Login } from '../../../redux/AuthSlice';
-import {showMessage, hideMessage} from 'react-native-flash-message';
+
 
 const initialValues = {
   email: '',
@@ -33,10 +33,7 @@ const LoginForm = ({setIsActive, active}) => {
       ).headers,
     );
     if (!response.ok) {
-      return showMessage({
-        message: response.data.error,
-        type:'danger'
-      })
+      return ErrorMessage(response.data.error);
     }
     dispatch(Login(response.data));
   };
