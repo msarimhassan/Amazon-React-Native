@@ -1,11 +1,13 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
-import Headphones from '../../../assets/images/Headphones.png';
+import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../common';
+import {AddToCart} from '../../redux/CartSlice';
 
 const ProductCard = ({product}) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   return (
     <TouchableOpacity
       style={styles.container}
@@ -18,7 +20,7 @@ const ProductCard = ({product}) => {
           <Text style={styles.productPrice}>Rs{product?.sellingPrice}</Text>
         </Text>
         <TouchableOpacity style={styles.cartBtn}>
-          <Text style={styles.btntext}>Add to Cart</Text>
+          <Text style={styles.btntext} onPress={()=>dispatch(AddToCart(product))}>Add to Cart</Text>
         </TouchableOpacity>
       </View>
     </TouchableOpacity>

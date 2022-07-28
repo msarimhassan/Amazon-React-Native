@@ -7,10 +7,11 @@ import CartNavigator from './CartNavigator';
 import ChatNavigator from './ChatNavigator';
 import {Routes, Icons,Colors} from '../common';
 import {AppHeader} from '../components';
-
+import { useSelector } from 'react-redux';
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
+  let product = useSelector(state => state.cart.cartProducts);
   return (
     <>
       <AppHeader />
@@ -38,7 +39,7 @@ const AppNavigator = () => {
           name={Routes.Cart}
           component={CartNavigator}
           options={{
-            tabBarBadge: 3,
+            tabBarBadge:product.length,
             tabBarIcon: ({focused, size, color}) => (
               <Icons.AntDesign
                 name="shoppingcart"
