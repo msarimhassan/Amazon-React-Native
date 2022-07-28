@@ -1,17 +1,20 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
-import { useDispatch } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
-import { Routes } from '../../common';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import {Routes} from '../../common';
 import {AddToCart} from '../../redux/CartSlice';
-
+import DisableButton from '../../components/DisableButton';
 const ProductCard = ({product}) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const products = useSelector(state => state.cart.cartProducts);
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate(Routes.SingleProduct,{productId:product?._id})}>
+      onPress={() =>
+        navigation.navigate(Routes.SingleProduct, {productId: product?._id})
+      }>
       <Image source={{uri: product?.imageUrl}} style={styles.image} />
       <View style={styles.productDetailContainer}>
         <Text style={styles.productName}>{product?.name}</Text>
@@ -19,9 +22,16 @@ const ProductCard = ({product}) => {
           Price:
           <Text style={styles.productPrice}>Rs{product?.sellingPrice}</Text>
         </Text>
-        <TouchableOpacity style={styles.cartBtn}>
-          <Text style={styles.btntext} onPress={()=>dispatch(AddToCart(product))}>Add to Cart</Text>
-        </TouchableOpacity>
+        {products.some((item) => item._id == product._id) ? <DisableButton style={styles.disablebtn} text='Added'/> :
+          <TouchableOpacity style={styles.cartBtn}>
+            <Text
+              style={styles.btntext}
+              onPress={() => dispatch(AddToCart(product))}>
+              Add to Cart
+            </Text>
+          </TouchableOpacity>
+        }
+        
       </View>
     </TouchableOpacity>
   );
@@ -54,7 +64,7 @@ const styles = StyleSheet.create({
   productName: {
     fontWeight: 'bold',
     color: '#000',
-    fontSize: 30,
+    fontSize: 22,
   },
   productPrice: {
     fontWeight: 'bold',
@@ -87,7 +97,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   productDetailContainer: {
-    width:200,
+    width: 200,
+  },
+  disablebtn: {
+    marginTop:10,
+    width: 100,
+    borderRadius: 20,
+    paddingVertical: 5,
+    
   }
 });
 

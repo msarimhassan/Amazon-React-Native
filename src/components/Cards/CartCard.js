@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
     resizeMode: 'contain',
+    marginTop:10,
   },
   productName: {
     fontWeight: 'bold',
@@ -89,12 +90,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   detailedContainer: {
-    width:180
+    width: 180,
+    marginTop:10
   },
   deletebtn: {
     position: 'absolute',
     top: 10,
-    right:5,
+    right:10,
   }
 });
 
