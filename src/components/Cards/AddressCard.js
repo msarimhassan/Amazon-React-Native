@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
+    backgroundColor: Colors.white,
     },
     heading: {
         display: "flex",

@@ -1,3 +1,4 @@
 import LogoutModal from "./LogoutModal";
+import EmptyCartModal from "./EmptyCartModal";
 
-export {LogoutModal}
+export {LogoutModal,EmptyCartModal}

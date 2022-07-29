@@ -6,8 +6,8 @@ import {useNavigation} from '@react-navigation/native';
 import {Network, Urls, config} from '../../../config';
 import AmazonLoader from '../../../../assets/animations';
 
-const ProductsScreen = ({ route }) => {
-  const { categoryId } = route.params;
+const ProductsScreen = ({route}) => {
+  const {categoryId} = route.params;
   const [pageNo, setpageNo] = useState(1);
   const [totalPages, settotalPages] = useState(1);
   const [products, setProducts] = useState([]);
@@ -21,12 +21,13 @@ const ProductsScreen = ({ route }) => {
 
   const getProducts = async pageNo => {
     const obj = {
-      latitude:null,
-    longitude:null,
-    }
-    const response = await Network.get(
+      latitude: null,
+      longitude: null,
+    };
+    const response = await Network.post(
       Urls.getProducts('en-US') +
-      `${categoryId}?page=${pageNo}&limit=${totalPages}`,
+        `${categoryId}?page=${pageNo}&limit=${totalPages}`,
+      obj,
       (
         await config()
       ).headers,
@@ -36,39 +37,31 @@ const ProductsScreen = ({ route }) => {
     setLoading(false);
   };
   return (
-  <>
-    { loading ? <AmazonLoader/>:
-  <ScrollView style={styles.parent}>
-    <TouchableOpacity
-      style={styles.backbtn}
-      onPress={() => navigation.goBack()}>
-      <Icons.AntDesign
-        name="arrowleft"
-        color={Colors.amazonColor}
-        size={30}
-      />
-    </TouchableOpacity>
+    <>
+      {loading ? (
+        <AmazonLoader />
+      ) : (
+        <ScrollView style={styles.parent}>
+          <TouchableOpacity
+            style={styles.backbtn}
+            onPress={() => navigation.goBack()}>
+            <Icons.AntDesign
+              name="arrowleft"
+              color={Colors.amazonColor}
+              size={30}
+            />
+          </TouchableOpacity>
 
-    <View style={styles.container}>
-      {products?.map((product, index) => {
-        return <ProductCard key={index} product={product} />;
-      })}
-    </View>
-  </ScrollView>
-      }
-      </>
-
+          {products?.map((product, index) => {
+            return <ProductCard key={index} product={product} />;
+          })}
+        </ScrollView>
+      )}
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingTop: 10,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    paddingHorizontal: 15,
-    marginBottom: 20,
-  },
   parent: {
     backgroundColor: Colors.white,
     height: '100%',

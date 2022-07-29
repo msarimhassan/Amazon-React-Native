@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 10,
     marginTop: 10,
+    backgroundColor:Colors.white
   },
   carddetailbox: {
     display: 'flex',

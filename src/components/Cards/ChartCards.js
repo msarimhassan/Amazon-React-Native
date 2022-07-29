@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
         borderRadius: 10,
         marginTop: 10,
-    borderColor:Colors.amazonColor,
+    borderColor: Colors.amazonColor,
+    backgroundColor:Colors.white,
   },
   image: {
     width: 50,

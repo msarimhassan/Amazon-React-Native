@@ -12,8 +12,9 @@ import {useNavigation} from '@react-navigation/native';
 import {Colors, Routes} from '../../../common';
 import {useSelector, useDispatch} from 'react-redux';
 import {Calculate} from '../../../redux/CartSlice';
-import {WarningMessage} from '../../../components';
+import {WarningMessage, Button} from '../../../components';
 import EmptyCart from '../../../../assets/images/Emptycart.png';
+
 const CartScreen = () => {
   const products = useSelector(state => state.cart.cartProducts);
   useEffect(() => {
@@ -37,9 +38,7 @@ const CartScreen = () => {
             <Text style={styles.price}>SubTotal</Text>
             <Text style={styles.price}>Rs{totalPrice}</Text>
           </View>
-          <TouchableOpacity style={styles.btn} onPress={() => Proceed()}>
-            <Text style={styles.btntxt}>Proceed to Checkout</Text>
-          </TouchableOpacity>
+          <Button text="Proceed to checkout" onPress={() => Proceed()} />
           {products.map((product, index) => {
             return <CartCard key={index} product={product} />;
           })}
@@ -57,7 +56,6 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     backgroundColor: '#fff',
-    paddingHorizontal: 15,
   },
   subtotal: {
     display: 'flex',
@@ -65,6 +63,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 10,
+    paddingHorizontal:10,
   },
   btn: {
     display: 'flex',
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   price: {
-    fontSize: 25,
+    fontSize: 20,
     color: '#000',
     fontWeight: 'bold',
   },
@@ -101,12 +100,12 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     backgroundColor: Colors.white,
     height: '100%',
-    width:'100%'
+    width: '100%',
   },
   EmptyContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    display:'flex',
+    display: 'flex',
   },
 });
 

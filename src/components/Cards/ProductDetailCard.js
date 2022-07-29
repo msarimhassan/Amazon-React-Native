@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 const Card = ({product}) => {
-  console.log({product});
+  
   return (
     <View style={styles.container}>
       <Image source={{uri: product?.imageUrl}} style={styles.image} />

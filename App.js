@@ -8,10 +8,13 @@ import { PersistGate } from 'redux-persist/integration/react';
 import Root from './src/components/Root';
 import FlashMessage from 'react-native-flash-message';
 
+
 let persistor = persistStore(store);
 
+
+
+
 const App = () => {
-  const [token, setToken] = useState();
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>

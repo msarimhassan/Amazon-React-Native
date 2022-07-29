@@ -8,7 +8,6 @@ import {useSelector} from 'react-redux';
 const ProfileCard = () => {
   const navigation = useNavigation();
   const currentUser = useSelector(state => state.auth.user);
-
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -18,7 +17,11 @@ const ProfileCard = () => {
       </TouchableOpacity>
       <View style={styles.box}>
         <View style={styles.profileContainer}>
-          <Image source={{uri:currentUser.image}} style={styles.image} />
+          {currentUser.image ? (
+            <Image source={{uri: currentUser.image}} style={styles.image} />
+          ) : (
+            <Icons.AntDesign name="user" color={Colors.font} size={30} />
+          )}
           <View>
             <Text style={styles.title}>{currentUser.name}</Text>
             <Text style={styles.email}>{currentUser.email}</Text>
@@ -40,19 +43,20 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
+    backgroundColor: Colors.white,
   },
   image: {
     width: 80,
     height: 80,
     resizeMode: 'contain',
-    borderRadius:50,
+    borderRadius: 50,
   },
   profileContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical:10,
+    paddingVertical: 10,
   },
   title: {
     fontWeight: 'bold',

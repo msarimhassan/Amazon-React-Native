@@ -17,6 +17,7 @@ import {useDispatch} from 'react-redux';
 import { Login } from '../../../redux/AuthSlice';
 
 
+
 const initialValues = {
   email: '',
   password: '',
@@ -96,8 +97,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   input: {
-    height: 35,
+    height: 40,
     width: '100%',
+    color:Colors.font,
   },
   title: {
     fontSize: 30,

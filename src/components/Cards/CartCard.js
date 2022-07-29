@@ -20,17 +20,14 @@ const CartCard = ({ product }) => {
       <Image source={{uri: product?.imageUrl}} style={styles.image} />
       <View style={styles.detailedContainer}>
         <Text style={styles.productName}>{product?.name}</Text>
-        <Text style={{fontSize: 17, marginTop: 5}}>
-          Price:
           <Text style={styles.productPrice}>Rs{product?.sellingPrice}</Text>
-        </Text>
         <View style={styles.quantity}>
           <TouchableWithoutFeedback
             style={styles.counter}
             onPress={() => dispatch(Decrement(product))}>
             <Icons.AntDesign name="minussquareo" size={25} color="#f5bb5c" />
           </TouchableWithoutFeedback>
-          <Text style={{fontSize: 25}}>{product?.quantity}</Text>
+          <Text style={styles.counter}>{product?.quantity}</Text>
           <TouchableWithoutFeedback
             onPress={() => dispatch(Increment(product))}>
             <Icons.AntDesign name="plussquareo" size={25} color="#f5bb5c" />
@@ -43,12 +40,12 @@ const CartCard = ({ product }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 380,
+    width: '90%',
+    alignSelf:'center',
     marginTop: 15,
     padding: 20,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     shadowColor: '#000',
     borderRadius: 5,
@@ -60,6 +57,8 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
     marginBottom: 10,
+    borderRadius: 20,
+    backgroundColor:Colors.white
   },
   image: {
     width: 150,
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
   productName: {
     fontWeight: 'bold',
     color: '#000',
-    fontSize: 30,
+    fontSize: 22,
   },
   productPrice: {
     fontWeight: 'bold',
@@ -90,13 +89,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   detailedContainer: {
-    width: 180,
+    width: 150,
     marginTop:10
   },
   deletebtn: {
     position: 'absolute',
     top: 10,
     right:10,
+  },
+  counter: {
+    fontSize: 20,
+    color:Colors.font
   }
 });
 

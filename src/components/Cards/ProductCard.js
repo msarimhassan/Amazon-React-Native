@@ -1,29 +1,34 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {Routes} from '../../common';
+import {Colors, Routes} from '../../common';
 import {AddToCart} from '../../redux/CartSlice';
 import DisableButton from '../../components/DisableButton';
+import {EmptyCartModal} from '../Modals';
+
 const ProductCard = ({product}) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const products = useSelector(state => state.cart.cartProducts);
+  const [isVisible, setisVisible] = useState(false);
 
   const NewProduct = product => {
-    if (products.length == 0)
-    {
-      return dispatch(AddToCart(product))
-      }
-    const result = products.some(item => {
-      product.creator == item.creator;
-    });
-    if (result) {
-     return dispatch(AddToCart(product))
+    if (products.length == 0) {
+      return dispatch(AddToCart(product));
     }
-    
+    const result = products.some(item => { 
+           return  item.creator.id ==product.creator.id
+    })                              
+    if (result) {
+      return dispatch(AddToCart(product));
+    } else {
+      setisVisible(true);
+    }
   };
   return (
+    <>
+     <EmptyCartModal isVisible={isVisible} setisVisible={setisVisible} product={product} />
     <TouchableOpacity
       style={styles.container}
       onPress={() =>
@@ -32,10 +37,7 @@ const ProductCard = ({product}) => {
       <Image source={{uri: product?.imageUrl}} style={styles.image} />
       <View style={styles.productDetailContainer}>
         <Text style={styles.productName}>{product?.name}</Text>
-        <Text style={{fontSize: 17, marginTop: 5}}>
-          Price:
-          <Text style={styles.productPrice}>Rs{product?.sellingPrice}</Text>
-        </Text>
+        <Text style={styles.productPrice}>Rs{product?.sellingPrice}</Text>
         {products.some(item => item._id == product._id) ? (
           <DisableButton style={styles.disablebtn} text="Added" />
         ) : (
@@ -46,18 +48,19 @@ const ProductCard = ({product}) => {
           </TouchableOpacity>
         )}
       </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+      </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: 380,
-    marginTop: 15,
+    width: '90%',
+    marginVertical: '5%',
+    alignSelf: 'center',
     padding: 20,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     shadowColor: '#000',
     borderRadius: 5,
@@ -68,6 +71,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
+    backgroundColor: Colors.white,
   },
   image: {
     width: 150,
@@ -110,13 +114,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   productDetailContainer: {
-    width: 200,
+    width: 150,
   },
   disablebtn: {
     marginTop: 10,
-    width: 100,
-    borderRadius: 20,
-    paddingVertical: 5,
+    width: 120,
+    borderRadius: 30,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    marginTop: 30,
   },
 });
 

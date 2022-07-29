@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
-import {Routes} from '../../common';
+import {Colors, Routes} from '../../common';
 import {useNavigation} from '@react-navigation/native';
 const CategoryCard = ({id, title, image}) => {
   const navigation = useNavigation();
@@ -23,15 +23,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
-    borderRadius: 5,
+    borderRadius: 10,
     shadowOffset: {
       width: 0,
       height: 1,
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
-
     elevation: 3,
+    backgroundColor: Colors.white,
+    alignSelf:'center'
   },
   image: {
     resizeMode: 'cover',
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000',
     marginTop: 20,
+    fontFamily: 'Poppins-ExtraBold',
   },
 });
 

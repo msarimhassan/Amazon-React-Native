@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, ScrollView, FlatList} from 'react-native';
 import {Colors} from '../../../common';
 import CategoryCard from '../../../components/Cards/CategoryCard.js';
 import {config, Network, Urls} from '../../../config';
 import AmazonLoader from '../../../../assets/animations';
+import GeoLocation from '@react-native-community/geolocation';
 
 const HomeScreen = () => {
   const [categoryList, setcategoryList] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     Getcategories();
+    GeoLocation.getCurrentPosition(data => console.log(data));
   }, []);
 
   const Getcategories = async () => {
@@ -27,35 +29,35 @@ const HomeScreen = () => {
     setLoading(false);
   };
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1}} style={styles.container}>
       {loading ? (
         <AmazonLoader />
       ) : (
-        <ScrollView contentContainerStyle={styles.container}>
-          {categoryList?.map((category, index) => {
+          <FlatList
+          keyExtractor={item => item.id}
+          numColumns={2}
+          data={categoryList}
+          renderItem={({item}) => {
             return (
               <CategoryCard
-                key={index}
-                id={category._id}
-                title={category.name}
-                image={category.imageUrl}
+                id={item._id}
+                title={item.name}
+                image={item.imageUrl}
               />
             );
-          })}
-        </ScrollView>
+          }}
+        />
       )}
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.white,
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    paddingHorizontal: 10,
-  },
-});
+    height:'100%',
+  }
+})
+
+
 
 export default HomeScreen;
