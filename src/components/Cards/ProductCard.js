@@ -9,6 +9,20 @@ const ProductCard = ({product}) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const products = useSelector(state => state.cart.cartProducts);
+
+  const NewProduct = product => {
+    if (products.length == 0)
+    {
+      return dispatch(AddToCart(product))
+      }
+    const result = products.some(item => {
+      product.creator == item.creator;
+    });
+    if (result) {
+     return dispatch(AddToCart(product))
+    }
+    
+  };
   return (
     <TouchableOpacity
       style={styles.container}
@@ -22,16 +36,15 @@ const ProductCard = ({product}) => {
           Price:
           <Text style={styles.productPrice}>Rs{product?.sellingPrice}</Text>
         </Text>
-        {products.some((item) => item._id == product._id) ? <DisableButton style={styles.disablebtn} text='Added'/> :
-          <TouchableOpacity style={styles.cartBtn}>
-            <Text
-              style={styles.btntext}
-              onPress={() => dispatch(AddToCart(product))}>
-              Add to Cart
-            </Text>
+        {products.some(item => item._id == product._id) ? (
+          <DisableButton style={styles.disablebtn} text="Added" />
+        ) : (
+          <TouchableOpacity
+            style={styles.cartBtn}
+            onPress={() => NewProduct(product)}>
+            <Text style={styles.btntext}>Add to Cart</Text>
           </TouchableOpacity>
-        }
-        
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -100,12 +113,11 @@ const styles = StyleSheet.create({
     width: 200,
   },
   disablebtn: {
-    marginTop:10,
+    marginTop: 10,
     width: 100,
     borderRadius: 20,
     paddingVertical: 5,
-    
-  }
+  },
 });
 
 export default ProductCard;

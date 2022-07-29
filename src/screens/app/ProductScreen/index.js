@@ -20,6 +20,10 @@ const ProductsScreen = ({ route }) => {
   }, []);
 
   const getProducts = async pageNo => {
+    const obj = {
+      latitude:null,
+    longitude:null,
+    }
     const response = await Network.get(
       Urls.getProducts('en-US') +
       `${categoryId}?page=${pageNo}&limit=${totalPages}`,

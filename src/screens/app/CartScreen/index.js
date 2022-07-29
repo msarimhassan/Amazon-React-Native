@@ -5,12 +5,15 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
+  Image,
 } from 'react-native';
 import CartCard from '../../../components/Cards/CartCard';
 import {useNavigation} from '@react-navigation/native';
-import {Routes} from '../../../common';
+import {Colors, Routes} from '../../../common';
 import {useSelector, useDispatch} from 'react-redux';
 import {Calculate} from '../../../redux/CartSlice';
+import {WarningMessage} from '../../../components';
+import EmptyCart from '../../../../assets/images/Emptycart.png';
 const CartScreen = () => {
   const products = useSelector(state => state.cart.cartProducts);
   useEffect(() => {
@@ -19,21 +22,34 @@ const CartScreen = () => {
   const totalPrice = useSelector(state => state.cart.totalPrice);
   const navigation = useNavigation();
   const dispatch = useDispatch();
+
+  const Proceed = () => {
+    if (products.length != 0) {
+      return navigation.navigate(Routes.Details);
+    }
+    WarningMessage('No items in the cart');
+  };
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.subtotal}>
-        <Text style={styles.price}>SubTotal</Text>
-        <Text style={styles.price}>Rs{totalPrice}</Text>
-      </View>
-      <TouchableOpacity
-        style={styles.btn}
-        onPress={() => navigation.navigate(Routes.Details)}>
-        <Text style={styles.btntxt}>Proceed to Checkout</Text>
-      </TouchableOpacity>
-      {products.map((product, index) => {
-        return <CartCard key={index} product={product} />;
-      })}
-    </ScrollView>
+    <>
+      {products.length != 0 ? (
+        <ScrollView style={styles.container}>
+          <View style={styles.subtotal}>
+            <Text style={styles.price}>SubTotal</Text>
+            <Text style={styles.price}>Rs{totalPrice}</Text>
+          </View>
+          <TouchableOpacity style={styles.btn} onPress={() => Proceed()}>
+            <Text style={styles.btntxt}>Proceed to Checkout</Text>
+          </TouchableOpacity>
+          {products.map((product, index) => {
+            return <CartCard key={index} product={product} />;
+          })}
+        </ScrollView>
+      ) : (
+        <View style={styles.EmptyContainer}>
+          <Image style={styles.EmptyCart} source={EmptyCart} />
+        </View>
+      )}
+    </>
   );
 };
 
@@ -78,6 +94,19 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: '#000',
     fontWeight: 'bold',
+  },
+  EmptyCart: {
+    width: 100,
+    height: 100,
+    resizeMode: 'contain',
+    backgroundColor: Colors.white,
+    height: '100%',
+    width:'100%'
+  },
+  EmptyContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    display:'flex',
   },
 });
 
