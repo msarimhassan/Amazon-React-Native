@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
-import {v4 as uuidv4} from 'uuid';
 import {useNavigation} from '@react-navigation/native';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import uuid from 'react-native-uuid';
 
 import Bill from './Bill';
 import {OrderProductCard} from '../../../components/Cards';
@@ -18,7 +18,7 @@ const OrderDetailScreen = ({route}) => {
   const products = useSelector(state => state.cart.cartProducts);
    
   const PlaceOrder =async () => {
-    let orderId = 1234;
+    let orderId = uuid.v4();
     orderId = orderId.substring(0, 7);
       const newarray = products.map(product => {
         return {
@@ -37,8 +37,8 @@ const OrderDetailScreen = ({route}) => {
     {
      return console.log(response.data.error);
     }
-    dispatch(EmptyCart);
-    navigation.navigate(Routes.Home);
+    dispatch(EmptyCart());
+    navigation.navigate(Routes.confirmOrder);
     
   }
 

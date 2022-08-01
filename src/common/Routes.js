@@ -22,6 +22,7 @@ export default {
     addressForm: 'AddressFormScreen',
     cardForm: 'CardFormScreen',
     chat: 'Chat',
-    createChat:'CreateChatScreen'
+    createChat: 'CreateChatScreen',
+    confirmOrder:'ConfirmOrderScreen'
 
  }

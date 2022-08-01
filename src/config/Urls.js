@@ -10,4 +10,5 @@ export default {
   getMessages: 'customer/get-messages/',
   sendMessage: 'customer/send-message',
   getConversations: 'customer/en-US/conversations',
+  getOrders: 'customer/my-orders',
 };
