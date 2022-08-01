@@ -1,12 +1,28 @@
+import React,{useState,useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {ScrollView} from 'native-base';
-import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Colors, Icons} from '../../../common';
 import {OrderProductCard} from '../../../components/Cards';
+import {config, Network, Urls} from '../../../config';
 
-const MyOrderScreen = () => {
+const MyOrderScreen = ({route}) => {
   const navigation = useNavigation();
+  const {orderId} = route.params;
+  const [orderedProducts, setOrderedProducts] = useState([]);
+
+  useEffect(() => {
+    GetOrderDetails();
+  },[])
+  const GetOrderDetails = async () => {
+    const response = await Network.get(
+      Urls.getOrderDetails+orderId,
+      (
+        await config()
+      ).headers,
+    );
+    setOrderedProducts(response.data.orderedProduct);
+  };
   return (
     <ScrollView style={styles.container}>
       <TouchableOpacity
@@ -18,16 +34,10 @@ const MyOrderScreen = () => {
           size={30}
         />
       </TouchableOpacity>
-      <View style={styles.priceContainer}>
-        <Text style={styles.label}>Total Price</Text>
-        <Text style={styles.label}>Rs1000</Text>
-      </View>
       <View style={styles.cardContainer}>
-        {Array(3)
-          .fill(0)
-          .map(index => {
-            return <OrderProductCard key={index} />;
-          })}
+        {orderedProducts?.map(order => {
+          return <OrderProductCard key={order._id} image={order.productId.imageUrl} name={order.name} price={order.unitPrice} quantity={order.quantity} />;
+        })}
       </View>
     </ScrollView>
   );
@@ -56,8 +66,8 @@ const styles = StyleSheet.create({
   },
   backbtn: {
     marginTop: 10,
-    marginLeft:10
-  }
+    marginLeft: 10,
+  },
 });
 
 export default MyOrderScreen;

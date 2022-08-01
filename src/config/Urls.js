@@ -12,4 +12,5 @@ export default {
   getConversations: 'customer/en-US/conversations',
   getOrders: 'customer/my-orders',
   getOrderHistory: 'customer/orders-history',
+  getOrderDetails: 'customer/order-detail/',
 };

@@ -3,9 +3,11 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Colors, Routes } from '../../common';
 import { useNavigation } from '@react-navigation/native';
 
-const OrderCard = ({orderId,status}) => {
+const OrderCard = ({orderId,status,id}) => {
   const navigation = useNavigation();
-    return <TouchableOpacity style={styles.container} onPress={()=>navigation.navigate(Routes.myOrder)}>
+  return <TouchableOpacity style={styles.container} onPress={() => navigation.navigate(Routes.myOrder, {
+      orderId:id
+    })}>
       <Text style={styles.orderNo}>Order#{orderId}</Text>
         <View style={status==='pending'?styles.pending:styles.delivered}>
         <Text style={styles.status}>{status}</Text>
