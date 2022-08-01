@@ -5,6 +5,7 @@ import {Routes} from '../common';
 import HomeScreen from '../screens/app/HomeScreen';
 import ProductsScreen from '../screens/app/ProductScreen';
 import ProductdetailScreen from '../screens/app/ProductDetailScreen';
+import CreateChatScreen from '../screens/app/CreateChatScreen';
 const Screen = createNativeStackNavigator();
 
 const HomeNavigator = () => {
@@ -18,6 +19,7 @@ const HomeNavigator = () => {
         name={Routes.SingleProduct}
         component={ProductdetailScreen}
       />
+      <Screen.Screen name={Routes.createChat} component={CreateChatScreen} />
     </Screen.Navigator>
   );
 };

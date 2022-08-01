@@ -1,41 +1,39 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import {Divider} from 'native-base'
-import { Colors } from '../../../common';
+import {View, StyleSheet, Text} from 'react-native';
+import {Divider} from 'native-base';
+import {Colors} from '../../../common';
+import {useSelector} from 'react-redux';
 
-const Bill = () => {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Order Summary</Text>
-        <Divider />
-        <View style={styles.orderDetails}>
-          <Text style={styles.label}>Cart Subtotal</Text>
-          <Text style={styles.value}>Rs.1793</Text>
-        </View>
-        <View style={styles.orderDetails}>
-          <Text style={styles.label}>Delivery Charges</Text>
-          <Text style={styles.value}>Rs.1793</Text>
-        </View>
-        <View style={styles.orderDetails}>
-          <Text style={styles.title}>Total Order</Text>
-          <Text style={styles.value}>Rs.1793</Text>
-        </View>
-        <Divider />
-        <View style={styles.orderDetails}>
-          <Text style={styles.label}>Payment Method</Text>
-          <Text style={styles.value}>Card</Text>
-        </View>
-        <View style={styles.orderDetails}>
-          <Text style={styles.label}>Card</Text>
-          <Text style={styles.value}>4242424242</Text>
-        </View>
-        <View style={styles.orderDetails}>
-          <Text style={styles.label}>Address</Text>
-          <Text style={styles.value}>Islampura</Text>
-        </View>
+const Bill = ({paymentMode, address, cardId}) => {
+  const totalPrice = useSelector(state => state.cart.totalPrice);
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Order Summary</Text>
+      <Divider />
+      <View style={styles.orderDetails}>
+        <Text style={styles.label}>Cart Subtotal</Text>
+        <Text style={styles.value}>{totalPrice}</Text>
       </View>
-    );
-}
+      <View style={styles.orderDetails}>
+        <Text style={styles.label}>Delivery Charges</Text>
+        <Text style={styles.value}>Rs.100</Text>
+      </View>
+      <View style={styles.orderDetails}>
+        <Text style={styles.title}>Total Order</Text>
+        <Text style={styles.value}>Rs{totalPrice + 100}</Text>
+      </View>
+      <Divider />
+      <View style={styles.orderDetails}>
+        <Text style={styles.label}>Payment Method</Text>
+        <Text style={styles.value}>{paymentMode.method}</Text>
+      </View>
+      <View style={styles.orderDetails}>
+        <Text style={styles.label}>Address</Text>
+        <Text style={styles.value}>{address.city}</Text>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
     marginTop: 10,
-    marginBottom:10
+    marginBottom: 10,
   },
   orderDetails: {
     display: 'flex',

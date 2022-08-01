@@ -3,20 +3,20 @@ import { View, StyleSheet, Text, Image } from 'react-native';
 import Headphones from '../../../assets/images/Headphones.png';
 import { Colors } from '../../common';
 
-const OrderProductCard = () => {
+const OrderProductCard = ({product}) => {
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image source={Headphones} style={styles.image} />
-          <Text style={styles.title}>Headphones</Text>
+          <Image source={{uri:product.imageUrl}} style={styles.image} />
+          <Text style={styles.title}>{product.name}</Text>
         </View>
         <View style={styles.Details}>
           <Text style={styles.label}>Quantity</Text>
-          <Text style={styles.value}>4</Text>
+          <Text style={styles.value}>{product.quantity}</Text>
         </View>
         <View style={styles.Details}>
           <Text style={styles.label}>Price</Text>
-          <Text style={styles.value}>Rs.1783</Text>
+          <Text style={styles.value}>{product.sellingPrice * product.quantity}</Text>
         </View>
       </View>
     );

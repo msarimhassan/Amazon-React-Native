@@ -1,51 +1,68 @@
-import React,{useState} from 'react';
-import {View, StyleSheet, Text, TouchableOpacity, ScrollView} from 'react-native';
-import {Colors, Routes,Icons} from '../../../common';
-import { SelectableCard, PaymentMethodCard } from '../../../components/Cards';
-import { Button } from '../../../components';
-import { useNavigation } from '@react-navigation/native';
-
-const dummyData = [
-  {
-    id: 0,
-    location: 'Lahore',
-  },
-  {
-    id: 1,
-    location: 'Islamabad',
-  },
-  {
-    id: 2,
-    location: 'Karachi',
-  }
-];
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
+import {Colors, Routes, Icons} from '../../../common';
+import {SelectableCard, PaymentMethodCard} from '../../../components/Cards';
+import {Button, WarningMessage} from '../../../components';
+import {useNavigation} from '@react-navigation/native';
+import {Network, Urls, config} from '../../../config';
 
 const paymentMethods = [
   {
     id: 0,
-    method:'Cash on Delivery',
-  }, {
-    id: 1,
-    method:'Card'
-  }
-]
-
-const CardDetails = [
-  {
-    id: 0,
-    cardno: '42424242424',
+    method: 'Cash on Delivery',
   },
   {
     id: 1,
-    cardno: '42424242424',
+    method: 'Card',
   },
 ];
 
 const DetailsScreen = () => {
   const [selectedAddress, setSelectedAddress] = useState({});
-  const [paymentMethod, setpaymentMethod] = useState({});
+  const [paymentMethod, setpaymentMethod] = useState(paymentMethods[0]);
   const [selectedCard, setselectedCard] = useState({});
+  const [addressList, setAddressList] = useState([]);
+  const [cardList, setcardList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(true);
   const navigation = useNavigation();
+  useEffect(() => {
+    GetAddress();
+    Getcards();
+  }, []);
+  const GetAddress = async () => {
+    const response = await Network.get(
+      Urls.getAddressList,
+      (
+        await config()
+      ).headers,
+      {},
+    );
+    setAddressList(response.data.addresses);
+    setLoading(false);
+  };
+  const Getcards = async () => {
+    const response = await Network.get(Urls.getCards, (await config()).headers);
+    setcardList(response.data.cards);
+    setLoading2(false);
+  };
+
+  const Next = () => {
+    if (Object.entries(selectedAddress).length === 0) {
+      return WarningMessage('Please Select the Address');
+    }
+    navigation.navigate(Routes.Orderdetails, {
+      paymentMode: paymentMethod,
+      address: selectedAddress,
+      cardId: selectedCard && selectedCard._id,
+    });
+  };
   return (
     <ScrollView style={{flex: 1, backgroundColor: Colors.white}}>
       <TouchableOpacity
@@ -60,20 +77,31 @@ const DetailsScreen = () => {
       <View style={styles.container}>
         <View style={styles.detailbox}>
           <Text style={styles.title}>Select Address:</Text>
-          <View style={styles.CardHandler}>
-            {dummyData.map((address, index) => {
-              return (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() => setSelectedAddress(address)}>
-                  <SelectableCard
-                    info={address.location}
-                    selected={selectedAddress.id === address.id}
-                  />
-                </TouchableOpacity>
-              );
-            })}
-          </View>
+          {loading ? (
+            <Text style={styles.loadingtext}>Loading Addresses</Text>
+          ) : (
+            <View style={styles.CardHandler}>
+              {addressList?.map((address, index) => {
+                return (
+                  <TouchableOpacity
+                    key={address._id}
+                    onPress={() => setSelectedAddress(address)}>
+                    <SelectableCard
+                      key={index}
+                      info={
+                        address.country +
+                        ',' +
+                        address.city +
+                        ',' +
+                        address.area
+                      }
+                      selected={selectedAddress?._id === address?._id}
+                    />
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          )}
         </View>
 
         {/* payment method */}
@@ -100,26 +128,28 @@ const DetailsScreen = () => {
 
         {/* Card Details */}
         {paymentMethod.method == 'Card' ? (
-          <View style={styles.carddetailbox}>
-            {CardDetails.map((card, index) => {
-              return (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() => setselectedCard(card)}>
-                  <SelectableCard
-                    info={card.cardno}
-                    selected={selectedCard.id === card.id}
-                  />
-                </TouchableOpacity>
-              );
-            })}
-          </View>
+          <>
+            {loading2 ? (
+              <Text style={styles.loadingtext}>Loading Cards</Text>
+            ) : (
+              <View style={styles.carddetailbox}>
+                {cardList?.map((card, index) => {
+                  return (
+                    <TouchableOpacity
+                      key={card._id}
+                      onPress={() => setselectedCard(card)}>
+                      <SelectableCard
+                        info={card.cardNumber}
+                        selected={selectedCard._id === card._id}
+                      />
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            )}
+          </>
         ) : null}
-        <Button
-          style={styles.nextBtn}
-          text="Next"
-          onPress={() => navigation.navigate(Routes.Orderdetails)}
-        />
+        <Button style={styles.nextBtn} text="Next" onPress={() => Next()} />
       </View>
     </ScrollView>
   );
@@ -158,7 +188,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 10,
     marginTop: 10,
-    backgroundColor:Colors.white
+    backgroundColor: Colors.white,
   },
   carddetailbox: {
     display: 'flex',
@@ -172,8 +202,12 @@ const styles = StyleSheet.create({
   },
   backbtn: {
     marginTop: 10,
-    marginLeft:10,
-  }
+    marginLeft: 10,
+  },
+  loadingtext: {
+    color: Colors.font,
+    fontSize: 16,
+  },
 });
 
 export default DetailsScreen;

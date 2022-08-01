@@ -21,6 +21,7 @@ export default {
     selectLanguage: 'SelectLanguageScreen',
     addressForm: 'AddressFormScreen',
     cardForm: 'CardFormScreen',
-    chat:'Chat',
+    chat: 'Chat',
+    createChat:'CreateChatScreen'
 
  }

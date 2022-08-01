@@ -1,10 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import ProductCard from '../../../components/Cards/ProductCard';
 import {Icons, Colors} from '../../../common';
 import {useNavigation} from '@react-navigation/native';
 import {Network, Urls, config} from '../../../config';
 import AmazonLoader from '../../../../assets/animations';
+import NoData from '../../../../assets/images/NoData.png';
 
 const ProductsScreen = ({route}) => {
   const {categoryId} = route.params;
@@ -40,7 +47,7 @@ const ProductsScreen = ({route}) => {
     <>
       {loading ? (
         <AmazonLoader />
-      ) : (
+      ) : products.length != 0 ? (
         <ScrollView style={styles.parent}>
           <TouchableOpacity
             style={styles.backbtn}
@@ -56,6 +63,10 @@ const ProductsScreen = ({route}) => {
             return <ProductCard key={index} product={product} />;
           })}
         </ScrollView>
+      ) : (
+        <View style={styles.Nodatacontainer}>
+          <Image source={NoData} style={styles.NoData} />
+        </View>
       )}
     </>
   );
@@ -69,6 +80,17 @@ const styles = StyleSheet.create({
   backbtn: {
     marginLeft: 20,
     marginTop: 10,
+  },
+  Nodatacontainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+    backgroundColor: Colors.white,
+  },
+  NoData: {
+    resizeMode: 'contain',
+    height: '100%',
+    width: '100%',
   },
 });
 
