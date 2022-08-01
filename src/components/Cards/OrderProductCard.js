@@ -1,22 +1,21 @@
 import React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import Headphones from '../../../assets/images/Headphones.png';
 import { Colors } from '../../common';
 
-const OrderProductCard = ({product}) => {
+const OrderProductCard = ({image,price,quantity,name}) => {
     return (
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image source={{uri:product.imageUrl}} style={styles.image} />
-          <Text style={styles.title}>{product.name}</Text>
+          <Image source={{uri:image}} style={styles.image} />
+          <Text style={styles.title}>{name}</Text>
         </View>
         <View style={styles.Details}>
           <Text style={styles.label}>Quantity</Text>
-          <Text style={styles.value}>{product.quantity}</Text>
+          <Text style={styles.value}>{quantity}</Text>
         </View>
         <View style={styles.Details}>
           <Text style={styles.label}>Price</Text>
-          <Text style={styles.value}>{product.sellingPrice * product.quantity}</Text>
+          <Text style={styles.value}>{price * quantity}</Text>
         </View>
       </View>
     );

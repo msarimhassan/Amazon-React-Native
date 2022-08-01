@@ -3,12 +3,12 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Colors, Routes } from '../../common';
 import { useNavigation } from '@react-navigation/native';
 
-const OrderCard = () => {
+const OrderCard = ({orderId,status}) => {
   const navigation = useNavigation();
     return <TouchableOpacity style={styles.container} onPress={()=>navigation.navigate(Routes.myOrder)}>
-        <Text style={styles.orderNo}>Order no 1</Text>
-        <View style={styles.pending}>
-            <Text style={styles.status}>pending</Text>
+      <Text style={styles.orderNo}>Order#{orderId}</Text>
+        <View style={status==='pending'?styles.pending:styles.delivered}>
+        <Text style={styles.status}>{status}</Text>
             </View>
 </TouchableOpacity>;
 }
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   delivered: {
-    backgroundColor: Colors.warning,
+    backgroundColor: '#01D648',
     borderRadius: 10,
     paddingHorizontal: 20,
     paddingVertical: 10,

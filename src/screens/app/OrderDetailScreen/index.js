@@ -56,7 +56,15 @@ const OrderDetailScreen = ({route}) => {
       <View style={styles.container}>
         <View>
           {products.map((product) => {
-            return <OrderProductCard key={product._id} product={product} />;
+            return (
+              <OrderProductCard
+                key={product._id}
+                image={product.imageUrl}
+                price={product.sellingPrice}
+                quantity={product.quantity}
+                name={product.name}
+              />
+            );
           })}
         </View>
         <Bill paymentMode={paymentMode} address={address} cardId={cardId} />
