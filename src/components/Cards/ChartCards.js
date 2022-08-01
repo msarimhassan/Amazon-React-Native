@@ -1,18 +1,26 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
-import {Colors} from '../../common';
+import { Colors,Routes } from '../../common';
+import { useNavigation } from '@react-navigation/native';
 
-const ChartCards = () => {
+const ChartCards = ({ name, image,conversationId,shopId }) => {
+  const navigation = useNavigation();
+  const OpenChat = () => {
+    navigation.navigate(Routes.createChat, {
+      shopId:shopId,
+      conversationId:conversationId,
+    });
+  }
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={()=>OpenChat()}>
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
-          source={{uri: 'https://mdbcdn.b-cdn.net/img/new/avatars/1.webp'}}
+          source={{uri: image}}
         />
       </View>
       <View style={styles.nameContainer}>
-        <Text style={styles.name}>Sarim Hassan</Text>
+        <Text style={styles.name}>{name}</Text>
       </View>
     </TouchableOpacity>
   );

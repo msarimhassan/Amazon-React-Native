@@ -9,4 +9,5 @@ export default {
   createChat: ln => `customer/${ln}/create-chat`,
   getMessages: 'customer/get-messages/',
   sendMessage: 'customer/send-message',
+  getConversations: 'customer/en-US/conversations',
 };
